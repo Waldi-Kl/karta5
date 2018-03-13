@@ -44,16 +44,34 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = "select r.rule from rule r where r.id in (select ur.rule_id "//
 				+ "from user_rule ur where ur.user_id =(select u.id from user u where u.login =?))";
 
+		 System.out.println("getUserRoles : "+ userLogin);
 		Object[] params = new Object[] { userLogin };
 
 		List<String> roles = this.getJdbcTemplate().queryForList(sql, params, String.class);
-
+		for(String a: roles)
+		System.out.println("Roles : "+ a);
+		
 		return roles;
 	}
 
 	public UserInfo getUserInfo(String userLogin) {
 		// TODO Auto-generated method stub
-		String sql = "Select u.login,u.pass,u.surname,u.name "//
+		String sql = "Select * "// .id, u.surname, u.name, u.login, u.pass, u.e-mail
+				+ " from user u where u.login = ? ";
+
+		Object[] params = new Object[] { userLogin };
+		UserInfoMapper mapper = new UserInfoMapper();
+		try {
+			UserInfo userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public UserInfo getUsersList() {
+		// TODO Auto-generated method stub
+		String sql = "Select u.id, u.surname, u.name, u.login "// .id, u.surname, u.name, u.login, u.pass, u.e-mail
 				+ " from user u where u.login = ? ";
 
 		Object[] params = new Object[] { userLogin };

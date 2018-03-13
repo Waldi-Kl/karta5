@@ -37,6 +37,8 @@ public class KardDBAuthenticationService implements UserDetailsService{
         // [USER,ADMIN,..]
         List<String> roles= userInfoDAO.getUserRoles(userlogin);
          
+        System.out.println("User rules ile : "+ roles.size());
+        
         List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
         if(roles!= null)  {
             for(String role: roles)  {

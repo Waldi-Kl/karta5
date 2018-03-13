@@ -23,7 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
  
         // Users in memory.
-    	System.out.println("WebSecurityConfig i configureGlobal " + auth+  "-");
         auth.inMemoryAuthentication().withUser("user1").password("12345").roles("USER");
         auth.inMemoryAuthentication().withUser("admin1").password("12345").roles("USER, ADMIN");
  
@@ -35,13 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
  
-    	System.out.println("WebSecurityConfig i http: " + http.authorizeRequests().and().formLogin().usernameParameter("username"));
+    //.out.println("WebSecurityConfig i http: " + http.authorizeRequests().and().formLogin().usernameParameter("username"));
         http.csrf().disable();
  
         // The pages does not require login
         http.authorizeRequests().antMatchers("/", "/homepage", "/login", "/logout").permitAll();
  
-        // /userInfo page requires login as USER or ADMIN.
+        // /cardInfo page requires login as USER or ADMIN.
         // If no login, it will redirect to /login page.
         http.authorizeRequests().antMatchers("/cardInfo/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
  

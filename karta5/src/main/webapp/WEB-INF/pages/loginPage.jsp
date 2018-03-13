@@ -85,7 +85,7 @@
 									class="w3-input w3-border" type='password' name='password' />
 							</p>
 							<p>
-								<button class="w3-btn" name="submit" type="submit">Wyślij</button>
+								<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
 							</p>
 						</form>
 					</div>

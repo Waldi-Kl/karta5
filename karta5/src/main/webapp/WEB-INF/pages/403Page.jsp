@@ -20,17 +20,27 @@
 <title>${title}</title>
 </head>
 <body>
-<header class="w3-container w3-theme">
+	<header class="w3-container w3-theme">
 	<div class="w3-bar">
-		<a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-button w3-padding-16"><i
-			class="fa fa-home"></i> Home</a>
+		<div class="w3-row">
+			<div class="w3-col s10 w3-center">
+				<a href="${pageContext.request.contextPath}/"
+					class="w3-bar-item w3-button w3-padding-16"><i
+					class="fa fa-home"></i> Home</a>
 
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<a href="${pageContext.request.contextPath}/logout" class="w3-bar-item w3-button w3-padding-16"><i
-			class="fa fa-sign-out"></i> Log out</a>
-			</c:if>
+				<c:if test="${pageContext.request.userPrincipal.name != null}">
+					<a href="${pageContext.request.contextPath}/logout"
+						class="w3-bar-item w3-button w3-padding-16"><i
+						class="fa fa-sign-out"></i> Log out</a>
+				</c:if>
+			</div>
+			<div class="w3-col s2 w3-center">
+				<p>Login: ${pageContext.request.userPrincipal.name}</p>
+			</div>
+		</div>
 	</div>
-	</header>
+
+</header>
 
 	<!-- Treść strony -->
 	<div class="w3-cell-row">
@@ -41,11 +51,11 @@
 			<div>
 				<h1>Nie powodzenie</h1>
 				<h3>${message}</h3>
-				
+
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">
-				
-						<!--  Tutaj jakaś tresć -->
+
+					<!--  Tutaj jakaś tresć -->
 
 				</div>
 			</div>
@@ -53,10 +63,10 @@
 		</div>
 	</div>
 
-<jsp:include page="_footer.jsp"/>
+	<jsp:include page="_footer.jsp" />
 
 	<script type="text/javascript"
-    src="${pageContext.request.contextPath}/js/base.js">
+		src="${pageContext.request.contextPath}/js/base.js">
 
     </script>
 
