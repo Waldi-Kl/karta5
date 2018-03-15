@@ -11,6 +11,8 @@ public interface UserInfoDAO {
     
     // [USER,AMIN,..]
     public List<String> getUserRoles(String userName);
+    
+    public List<UserInfo> getUsersList();
      
 
 }

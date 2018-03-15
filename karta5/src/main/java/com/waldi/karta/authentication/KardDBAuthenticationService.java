@@ -24,12 +24,7 @@ public class KardDBAuthenticationService implements UserDetailsService{
     
     public UserDetails loadUserByUsername(String userlogin) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoDAO.getUserInfo(userlogin);
- 
-        System.out.println("User id: "+ userInfo.getId());
-        System.out.println("User login: "+ userInfo.getLogin());
-        System.out.println("User Imie: "+ userInfo.getName());
-        System.out.println("User Nazwisko: "+ userInfo.getSurname());
- 
+
         if (userInfo == null) {
             throw new UsernameNotFoundException("User " + userlogin + " was not found in the database");
         }
@@ -37,7 +32,6 @@ public class KardDBAuthenticationService implements UserDetailsService{
         // [USER,ADMIN,..]
         List<String> roles= userInfoDAO.getUserRoles(userlogin);
          
-        System.out.println("User rules ile : "+ roles.size());
         
         List<GrantedAuthority> grantList= new ArrayList<GrantedAuthority>();
         if(roles!= null)  {

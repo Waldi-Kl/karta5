@@ -34,15 +34,15 @@
 	</div>
 	</header>
 
-	<!-- Treść strony -->
-	<div class="w3-cell-row">
+	<!-- Treść strony  w3-cell-row -->
+	<div class=" w3-container">
 
 		<!-- Boczny panel -->
 
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 			<div>
-					<h2>Administracja użytkownikami</h2>
+					<h2>Logowanie</h2>
 
 				<div class="w3-card w3-theme">
 					<!-- //w3-theme w3-white -->
@@ -65,8 +65,6 @@
 							</div>
 						</c:if>
 					</div>
-
-					<h3>Wprowadż login i hasło:</h3>
 
 					<div class="w3-card-4 w3-theme">
 						<div class="w3-container">
@@ -91,6 +89,7 @@
 					</div>
 
 				</div>
+				<p></p>
 			</div>
 
 		</div>

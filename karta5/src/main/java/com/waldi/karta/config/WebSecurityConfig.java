@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Users in memory.
         auth.inMemoryAuthentication().withUser("user1").password("12345").roles("USER");
         auth.inMemoryAuthentication().withUser("admin1").password("12345").roles("USER, ADMIN");
+        auth.inMemoryAuthentication().withUser("admin2").password("123").roles("ADMIN");
  
         // For User in database.
         auth.userDetailsService(kardDBAauthenticationService);
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/cardInfo/*").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
  
         // For ADMIN only.
-        http.authorizeRequests().antMatchers("/admin","/userInfo").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin","/userInfo/*").access("hasRole('ROLE_ADMIN')");
  
         // When the user has logged in as XX.
         // But access a page that requires role YY,

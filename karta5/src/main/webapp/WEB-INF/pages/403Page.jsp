@@ -23,19 +23,26 @@
 	<header class="w3-container w3-theme">
 	<div class="w3-bar">
 		<div class="w3-row">
-			<div class="w3-col s10 w3-center">
+			<div class="w3-col s9 w3-center">
 				<a href="${pageContext.request.contextPath}/"
 					class="w3-bar-item w3-button w3-padding-16"><i
 					class="fa fa-home"></i> Home</a>
 
-				<c:if test="${pageContext.request.userPrincipal.name != null}">
-					<a href="${pageContext.request.contextPath}/logout"
-						class="w3-bar-item w3-button w3-padding-16"><i
-						class="fa fa-sign-out"></i> Log out</a>
-				</c:if>
+
 			</div>
-			<div class="w3-col s2 w3-center">
-				<p>Login: ${pageContext.request.userPrincipal.name}</p>
+			<!-- 	------------------------------------------ login info  -------------------------  -->
+			<div class="w3-col s3 w3-center">
+				<div class="w3-container w3-cell">
+					<p>Login: ${pageContext.request.userPrincipal.name}</p>
+				</div>
+
+				<div class="w3-container w3-cell">
+					<c:if test="${pageContext.request.userPrincipal.name != null}">
+						<a href="${pageContext.request.contextPath}/logout"
+							class="w3-button w3-padding-16"><i
+							class="fa fa-sign-out"></i> Log out</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -51,6 +58,7 @@
 			<div>
 				<h1>Nie powodzenie</h1>
 				<h3>${message}</h3>
+				<p>Tekst z kontrolera: #{ msg}</p>
 
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">

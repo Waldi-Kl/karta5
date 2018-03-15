@@ -30,16 +30,42 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 
-			<div>
-					<h2>Administracja użytkownikami</h2>
-					<p>Message : ${message}</p>
+			<p>Użytkownicy</p>
 
 				<!--  Tu jakaś treść  -->
-				<div class="w3-border">
-
+				<div class="w3-container">
 					
+				 <button class="w3-button w3-blue">+Dodaj</button>
+
+					<table class="w3-table w3-striped w3-border">
+
+						<tr>
+							<th>Imie</th>
+							<th>Nazwisko</th>
+							<th>Login</th>
+							<th>E-mail</th>
+							<th>Edytuj</th>
+						</tr>
+						
+												<tr>
+							<td>${user.name}</td>
+							<td>${user.name}</td>>
+							<td>${user.name}</td>
+							<td>${user.name}</td>
+							<td>${user.name}</td>
+						</tr>
+						<c:forEach var="user" items="${users}">
+							<tr>
+								<td>${user.name}</td>
+								<td>${user.surname}</td>
+								<td>${user.login}</td>
+								<td>${user.email}</td>
+								<td><button class="w3-button w3-hover-black">Edycja</button></td>
+							</tr>
+						</c:forEach>
+					</table>
 				</div>
-			</div>
+	
 
 		</div>
 	</div>
@@ -49,7 +75,7 @@
 	<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">
-
-    </script>
+		
+	</script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,41 +24,24 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		this.setDataSource(dataSource);
 	}
 
-	// public UserInfo findUserInfo(String userName) {
-	// String sql = "Select u.login,u.pass "//
-	// + " from user u where u.login = ? ";
-	//
-	// Object[] params = new Object[] { userName };
-	// UserInfoMapper mapper = new UserInfoMapper();
-	// try {
-	// UserInfo userInfo = this.getJdbcTemplate().queryForObject(sql, params,
-	// mapper);
-	// return userInfo;
-	// } catch (EmptyResultDataAccessException e) {
-	// return null;
-	// }
-	// }
-
 	public List<String> getUserRoles(String userLogin) {
 		// String sql = "Select r.User_Role "//
 		// + " from User_Roles r where r.Username = ? ";
 		String sql = "select r.rule from rule r where r.id in (select ur.rule_id "//
 				+ "from user_rule ur where ur.user_id =(select u.id from user u where u.login =?))";
 
-		 System.out.println("getUserRoles : "+ userLogin);
 		Object[] params = new Object[] { userLogin };
 
 		List<String> roles = this.getJdbcTemplate().queryForList(sql, params, String.class);
-		for(String a: roles)
-		System.out.println("Roles : "+ a);
-		
+
 		return roles;
 	}
 
 	public UserInfo getUserInfo(String userLogin) {
 		// TODO Auto-generated method stub
-		String sql = "Select * "// .id, u.surname, u.name, u.login, u.pass, u.e-mail
-				+ " from user u where u.login = ? ";
+		// String sql = "Select * "// .id, u.surname, u.name, u.login, u.pass, u.e-mail
+		// + " from user u where u.login = ? ";
+		String sql = UserInfoMapper.BASE_SQL + "where u.login = ?";
 
 		Object[] params = new Object[] { userLogin };
 		UserInfoMapper mapper = new UserInfoMapper();
@@ -68,18 +52,18 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 			return null;
 		}
 	}
-	
-	public UserInfo getUsersList() {
-		// TODO Auto-generated method stub
-		String sql = "Select u.id, u.surname, u.name, u.login "// .id, u.surname, u.name, u.login, u.pass, u.e-mail
-				+ " from user u where u.login = ? ";
 
-		Object[] params = new Object[] { userLogin };
+	public List<UserInfo> getUsersList() {
+
+		String sql = UserInfoMapper.BASE_SQL;
+
+		Object[] params = new Object[] {};
 		UserInfoMapper mapper = new UserInfoMapper();
 		try {
-			UserInfo userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
-			return userInfo;
+			List<UserInfo> lista = this.getJdbcTemplate().query(sql, params, mapper);
+			return lista;
 		} catch (EmptyResultDataAccessException e) {
+			System.out.println("Null : "+e);
 			return null;
 		}
 	}
