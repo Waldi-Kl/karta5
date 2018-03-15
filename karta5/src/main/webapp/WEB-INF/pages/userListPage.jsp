@@ -32,40 +32,44 @@
 
 			<p>Użytkownicy</p>
 
-				<!--  Tu jakaś treść  -->
-				<div class="w3-container">
-					
-				 <button class="w3-button w3-blue">+Dodaj</button>
+			<!--  Tu jakaś treść  -->
+			<div class="w3-container">
 
-					<table class="w3-table w3-striped w3-border">
+				<button class="w3-button w3-blue">+Dodaj</button>
 
+				<table class="w3-table w3-striped w3-border">
+
+					<tr>
+						<th>Imie</th>
+						<th>Nazwisko</th>
+						<th>Login</th>
+						<th>E-mail</th>
+						<th></th>
+					</tr>
+
+					<tr>
+						<td><input class="w3-input w3-border" type="text"
+							placeholder="Imię"></td>
+						<td><input class="w3-input w3-border" type="text"
+							placeholder="Nazwisko"></td>
+						<td><input class="w3-input w3-border" type="text"
+							placeholder="Login"></td>
+						<td><input class="w3-input w3-border" type="text"
+							placeholder="Email"></td>
+							<td><button class="w3-button w3-hover-black">Szukaj</button></td>
+					</tr>
+					<c:forEach var="user" items="${users}">
 						<tr>
-							<th>Imie</th>
-							<th>Nazwisko</th>
-							<th>Login</th>
-							<th>E-mail</th>
-							<th>Edytuj</th>
+							<td>${user.name}</td>
+							<td>${user.surname}</td>
+							<td>${user.login}</td>
+							<td>${user.email}</td>
+							<td><button class="w3-button w3-hover-black">Edycja</button></td>
 						</tr>
-						
-												<tr>
-							<td>${user.name}</td>
-							<td>${user.name}</td>>
-							<td>${user.name}</td>
-							<td>${user.name}</td>
-							<td>${user.name}</td>
-						</tr>
-						<c:forEach var="user" items="${users}">
-							<tr>
-								<td>${user.name}</td>
-								<td>${user.surname}</td>
-								<td>${user.login}</td>
-								<td>${user.email}</td>
-								<td><button class="w3-button w3-hover-black">Edycja</button></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-	
+					</c:forEach>
+				</table>
+			</div>
+
 
 		</div>
 	</div>
