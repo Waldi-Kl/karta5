@@ -59,7 +59,11 @@
 											onclick="document.getElementById('id01').style.display='none'"
 											class="w3-button w3-display-topright">&times;</span>
 										<p>Logowanie Nieudane!!!</p>
-										<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+										<c:set var = "mesage2" scope = "page" value = "${2000*2}"/>
+										<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+		</c:if>
+										
 									</div>
 								</div>
 							</div>
