@@ -30,15 +30,23 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 
-			<p>Użytkownicy</p>
+			<div>
+				<p>Użytkownik:</p>
+				<input class="w3-input w3-border" type="text" placeholder="Imię"
+					placeholder="Search for names.." id="adminInput"
+					onkeyup="findUserFunction()">
+				<button class="w3-button w3-hover-black"
+					onclick="document.getElementById('adminInput').value = '';findUserFunction()">Wyczysc</button>
+			</div>
+
 
 			<!--  Tu jakaś treść  -->
 			<div class="w3-container">
 
 				<button class="w3-button w3-blue">+Dodaj</button>
 
-				<table class="w3-table w3-striped w3-border">
 
+				<table class="w3-table w3-striped w3-border" id="userTable">
 					<tr>
 						<th>Imie</th>
 						<th>Nazwisko</th>
@@ -47,17 +55,7 @@
 						<th></th>
 					</tr>
 
-					<tr>
-						<td><input class="w3-input w3-border" type="text"
-							placeholder="Imię"></td>
-						<td><input class="w3-input w3-border" type="text"
-							placeholder="Nazwisko"></td>
-						<td><input class="w3-input w3-border" type="text"
-							placeholder="Login"></td>
-						<td><input class="w3-input w3-border" type="text"
-							placeholder="Email"></td>
-							<td><button class="w3-button w3-hover-black">Szukaj</button></td>
-					</tr>
+
 					<c:forEach var="user" items="${users}">
 						<tr>
 							<td>${user.name}</td>
