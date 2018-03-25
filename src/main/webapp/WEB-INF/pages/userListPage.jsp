@@ -28,45 +28,50 @@
 
 
 		<!-- Część centralna -->
-		<div class="w3-container w3-cell ">
+		<div class="w3-container  ">
 
-			<p>Użytkownicy</p>
+		<div class="w3-container">
+			<div class="w3-container ">
+				<label>Szukaj:</label>
+			</div>
 
-				<!--  Tu jakaś treść  -->
-				<div class="w3-container">
-					
-				 <button class="w3-button w3-blue">+Dodaj</button>
+			<div class="w3-container w3-cell">
+				<input class="w3-input w3-border" type="text" placeholder="Nazwisko"
+					id="adminInput" onkeyup="findUserFunction()">
+			</div>
 
-					<table class="w3-table w3-striped w3-border">
+			<div class="w3-container w3-cell">
+				<button class="w3-button w3-theme w3-cell"
+					onclick="document.getElementById('adminInput').value = '';findUserFunction()">Wyczyść</button>
+			</div>
+		</div>
+			
 
+			<!--  Tu jakaś treść  -->
+			<div class="w3-container">
+			<button class="w3-button w3-blue">+Dodaj</button>
+				<table class="w3-table w3-striped w3-border" id="userTable">
+					<tr>
+						<th>Imie</th>
+						<th>Nazwisko</th>
+						<th>Login</th>
+						<th>E-mail</th>
+						<th></th>
+					</tr>
+
+
+					<c:forEach var="user" items="${users}">
 						<tr>
-							<th>Imie</th>
-							<th>Nazwisko</th>
-							<th>Login</th>
-							<th>E-mail</th>
-							<th>Edytuj</th>
+							<td>${user.name}</td>
+							<td>${user.surname}</td>
+							<td>${user.login}</td>
+							<td>${user.email}</td>
+							<td><button class="w3-button w3-theme">Edycja</button></td>
 						</tr>
-						
-												<tr>
-							<td>${user.name}</td>
-							<td>${user.name}</td>>
-							<td>${user.name}</td>
-							<td>${user.name}</td>
-							<td>${user.name}</td>
-						</tr>
-						<c:forEach var="user" items="${users}">
-							<tr>
-								<td>${user.name}</td>
-								<td>${user.surname}</td>
-								<td>${user.login}</td>
-								<td>${user.email}</td>
-								<td><button class="w3-button w3-hover-black">Edycja</button></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-	
-
+					</c:forEach>
+				</table>
+				
+			</div>
 		</div>
 	</div>
 

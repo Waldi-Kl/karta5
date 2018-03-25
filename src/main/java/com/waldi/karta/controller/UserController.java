@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mysql.jdbc.SQLError;
 import com.waldi.karta.dao.UserInfoDAO;
 import com.waldi.karta.dao.impl.UserInfoDAOImpl;
 import com.waldi.model.UserInfo;
@@ -32,11 +33,29 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
-	public String MainController(Model model) {
+	public String MainController(Model model){
 		model.addAttribute("title", "UserInfo");
+
+			List<UserInfo> list = userInfoDAO.getUsersList();
+
+		model.addAttribute("users", list);
+		return "userListPage";
+	}
+	
+
+	@RequestMapping(value = { "/adduser" }, method = RequestMethod.GET)
+	public String addUser(Model model) {
+		model.addAttribute("title", "UserAdd");
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";
 	}
-
+	
+	@RequestMapping(value = { "/adduser" }, method = RequestMethod.POST)
+	public String putUser(Model model) {
+		model.addAttribute("title", "UserInfo");
+		List<UserInfo> list = userInfoDAO.getUsersList();
+		model.addAttribute("users", list);
+		return "userAddPage";
+	}
 }

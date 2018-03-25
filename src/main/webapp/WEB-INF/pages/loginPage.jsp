@@ -60,6 +60,7 @@
 											class="w3-button w3-display-topright">&times;</span>
 										<p>Logowanie Nieudane!!!</p>
 										<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+										<p>Info z kontrolera:${message}</p>
 									</div>
 								</div>
 							</div>

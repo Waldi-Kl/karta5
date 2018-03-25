@@ -20,47 +20,25 @@
 <title>${title}</title>
 </head>
 <body>
-<header class="w3-container w3-theme">
-	<div class="w3-bar">
-		<a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-button w3-padding-16"><i
-			class="fa fa-home"></i> Home</a>
-
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<a href="${pageContext.request.contextPath}/logout" class="w3-bar-item w3-button w3-padding-16"><i
-			class="fa fa-sign-out"></i> Log out</a>
-			</c:if>
-	</div>
-	</header>
+	<jsp:include page="_menuAdmin.jsp" />
 
 
 	<!-- Treść strony -->
 	<div class="w3-cell-row">
 
 
-
 		<!-- Część centralna -->
-		<div class="w3-container w3-cell ">
-			<div>
-				<h3>${message}</h3>
-
-				<!--  Tu jakaś treść  -->
-				<div class="w3-border">
-				
-						<!--  Tutaj jakaś tresć -->
-
-				</div>
-			</div>
-
+		<div class="w3-container  ">
+<p>DODAJ Usera</p>
 		</div>
 	</div>
-	
-<jsp:include page="_footer.jsp"/>
+
+	<jsp:include page="_footer.jsp" />
 
 	<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
 	<script type="text/javascript"
-    src="${pageContext.request.contextPath}/js/base.js">
-
-    </script>
-	
+		src="${pageContext.request.contextPath}/js/base.js">
+		
+	</script>
 </body>
 </html>
