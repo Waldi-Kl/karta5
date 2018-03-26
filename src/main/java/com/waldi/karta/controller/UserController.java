@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,19 +26,24 @@ public class UserController {
 	public String userInfo(Model model, Principal principal) {
 
 		// After user login successfully.
-		String userName = principal.getName();
-
+		//String userName = principal.getName();
 		model.addAttribute("title", "UserInfo");
-
 		return "userInfoPage";
 	}
 
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
-	public String MainController(Model model){
+	public String MainController(Model model){		
+		List<UserInfo> list = null;		
+		try{
+			list = userInfoDAO.getUsersList();
+		} catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())
+			model.addAttribute("title", "UserInfo");
+			model.addAttribute("message", "Nie powodzenie podczas po³¹czenia do bazy!");
+			return "403Page";
+		}
+
 		model.addAttribute("title", "UserInfo");
-
-			List<UserInfo> list = userInfoDAO.getUsersList();
-
 		model.addAttribute("users", list);
 		return "userListPage";
 	}

@@ -10,17 +10,12 @@ import com.waldi.model.UserInfo;
 
 public class UserInfoMapper implements RowMapper<UserInfo> {
 	
-	
-	public UserInfoMapper(){
-		System.out.println("UserInfoMapper");	
-	}
-	
 	public static final String BASE_SQL = //
 			 "Select u.id, u.surname, u.name, u.login, u.pass, u.email "//
 			+ " from user u ";
 	public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
-		try {
+
 		int userId = rs.getInt("id");
 		String surname = rs.getString("surname");
 		String userName = rs.getString("name");
@@ -34,12 +29,7 @@ public class UserInfoMapper implements RowMapper<UserInfo> {
         user.setId(userId);
         user.setEmail(email);
         return user;
-        
-	}
-		catch (EmptyResultDataAccessException e) {
-			System.out.println("UserInfoMaoer error :"+e );
-			return null;
-		}
+
 	}
 
 	

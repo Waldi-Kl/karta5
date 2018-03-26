@@ -36,18 +36,7 @@ public class MainController {
        model.addAttribute("message", "OK!");
        return "logoutSuccessfulPage";
    }
- 
-//   @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-//   public String userInfo(Model model, Principal principal) {
-// 
-//       // After user login successfully.
-//       String userName = principal.getName();
-// 
-//       model.addAttribute("title", "UserInfo");
-// 
-//       return "userInfoPage";
-//   }
- 
+
    @RequestMapping(value = "/403", method = RequestMethod.GET)
    public String accessDenied(Model model, Principal principal) {
         
