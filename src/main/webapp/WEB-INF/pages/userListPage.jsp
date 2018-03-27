@@ -23,56 +23,92 @@
 	<jsp:include page="_menuAdmin.jsp" />
 
 
-	<!-- Treść strony -->
-	<div class="w3-cell-row">
+	<!-- Treść strony 
+	<div class="w3-cell-row">-->
 
 
-		<!-- Część centralna -->
-		<div class="w3-container  ">
+	<!-- Część centralna -->
+	<div class="w3-container  ">
 
-		<div class="w3-container">
-			<div class="w3-container ">
-				<label>Szukaj:</label>
+		<div class="w3-border">
+			<div class="w3-bar w3-black">
+				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16"
+					onclick="openTabs(event,'List')">Lista</button>
+				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16"
+					onclick="openTabs(event,'AddUser')">Dodaj</button>
 			</div>
 
-			<div class="w3-container w3-cell">
-				<input class="w3-input w3-border" type="text" placeholder="Nazwisko"
-					id="adminInput" onkeyup="findUserFunction()">
-			</div>
+			<div id="List" class="w3-container tab w3-animate-opacity">
+				<div class="w3-padding-16">
+					<div class="w3-container ">
+						<label>Szukaj:</label>
+					</div>
 
-			<div class="w3-container w3-cell">
-				<button class="w3-button w3-theme w3-cell"
-					onclick="document.getElementById('adminInput').value = '';findUserFunction()">Wyczyść</button>
-			</div>
-		</div>
-			
+					<div class="w3-container w3-cell">
+						<input class="w3-input w3-border" type="text"
+							placeholder="Nazwisko" id="adminInput"
+							onkeyup="findUserFunction()">
+					</div>
 
-			<!--  Tu jakaś treść  -->
-			<div class="w3-container">
-			<button class="w3-button w3-blue">+Dodaj</button>
-				<table class="w3-table w3-striped w3-border" id="userTable">
-					<tr>
-						<th>Imie</th>
-						<th>Nazwisko</th>
-						<th>Login</th>
-						<th>E-mail</th>
-						<th></th>
-					</tr>
+					<div class="w3-container w3-cell">
+						<button class="w3-button w3-theme w3-cell"
+							onclick="document.getElementById('adminInput').value = '';findUserFunction()">Wyczyść</button>
+					</div>
+				</div>
 
 
-					<c:forEach var="user" items="${users}">
+				<!--  Tu jakaś treść  -->
+				<div class="w3-container">
+
+					<table class="w3-table w3-striped w3-border" id="userTable">
 						<tr>
-							<td>${user.name}</td>
-							<td>${user.surname}</td>
-							<td>${user.login}</td>
-							<td>${user.email}</td>
-							<td><button class="w3-button w3-theme">Edycja</button></td>
+							<th>Imię</th>
+							<th>Nazwisko</th>
+							<th>Login</th>
+							<th>E-mail</th>
+							<th></th>
 						</tr>
-					</c:forEach>
-				</table>
-				
+						<c:forEach var="user" items="${users}">
+							<tr>
+								<td>${user.name}</td>
+								<td>${user.surname}</td>
+								<td>${user.login}</td>
+								<td>${user.email}</td>
+								<td><button class="w3-button w3-theme">Edycja</button></td>
+							</tr>
+						</c:forEach>
+					</table>
+					<hr>
+				</div>
 			</div>
+
+			<div id="AddUser" class="w3-container tab w3-animate-opacity">
+				<form class="w3-container w3-card-4" name="userForm" action="${pageContext.request.contextPath}/userInfo/adduser" onsubmit="return validateUserForm()" method="post">
+					<h2 class="w3-text-black">Dane użytkownika</h2>
+					<p>
+						<label class="w3-text-black"><b>Imię</b></label> <input
+							class="w3-input w3-border" name="first" type="text">
+					</p>
+					<p>
+						<label class="w3-text-black"><b>Nazwisko</b></label> <input
+							class="w3-input w3-border" name="last" type="text">
+					</p>
+					<p>
+						<label class="w3-text-black"><b>Login</b></label> <input
+							class="w3-input w3-border" name="login" type="text">
+					</p>
+					<p>
+						<label class="w3-text-black"><b>E-mail</b></label> <input
+							class="w3-input w3-border" name="email" type="text">
+					</p>
+					<p>
+						<button class="w3-btn w3-black">+ Dodaj</button>
+					</p>
+				</form>
+			</div>
+
 		</div>
+
 	</div>
 
 	<jsp:include page="_footer.jsp" />
@@ -80,7 +116,7 @@
 	<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">
-		
-	</script>
+			
+		</script>
 </body>
 </html>

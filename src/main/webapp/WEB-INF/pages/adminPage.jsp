@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<jsp:include page="_menu.jsp"/>
+<jsp:include page="_menuAdmin.jsp"/>
 
 
 

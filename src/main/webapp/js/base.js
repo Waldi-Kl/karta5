@@ -15,9 +15,9 @@
 		}
 
 		// Tabs
-		function openCity(evt, cityName) {
+		function openTabs(evt, tabsName) {
 			var i;
-			var x = document.getElementsByClassName("city");
+			var x = document.getElementsByClassName("tab");
 			for (i = 0; i < x.length; i++) {
 				x[i].style.display = "none";
 			}
@@ -26,7 +26,7 @@
 				activebtn[i].className = activebtn[i].className.replace(
 						" w3-dark-grey", "");
 			}
-			document.getElementById(cityName).style.display = "block";
+			document.getElementById(tabsName).style.display = "block";
 			evt.currentTarget.className += " w3-dark-grey";
 		}
 
@@ -107,4 +107,13 @@
 		function myFunction() {
 		    var x = document.getElementById("demo");
 		    x.value = x.value.toUpperCase();
+		}
+		
+		// Walidacja formulaża
+		function validateUserForm() {
+		    var x = document.forms["userForm"]["first"].value;
+		    if (x == "") {
+		        alert("Pola nie mogą być puste");
+		        return false;
+		    }
 		}

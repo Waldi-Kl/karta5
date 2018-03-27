@@ -58,7 +58,6 @@
 			<div>
 				<h1>Nie powodzenie</h1>
 				<h3>${message}</h3>
-				<p>Tekst z kontrolera: ${msg}</p>
 
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">
