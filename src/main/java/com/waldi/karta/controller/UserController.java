@@ -47,7 +47,8 @@ public class UserController {
 	
 
 	@RequestMapping(value = { "/adduser" }, method = RequestMethod.POST)
-	public String AddUser(Model model) {
+	public String AddUser(Model model,  UserInfo newUser) {
+		System.out.println("Send Money::" + newUser.getLogin());
 		model.addAttribute("title", "UserAdd");
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);

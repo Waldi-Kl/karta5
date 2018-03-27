@@ -32,6 +32,7 @@
 
 		var mybtn = document.getElementsByClassName("testbtn")[0];
 		mybtn.click();
+		
 
 		// Accordions
 		function myAccFunc(id) {
@@ -111,9 +112,17 @@
 		
 		// Walidacja formulaża
 		function validateUserForm() {
-		    var x = document.forms["userForm"]["first"].value;
-		    if (x == "") {
-		        alert("Pola nie mogą być puste");
+		    var x1 = document.forms["userForm"]["first"].value;
+		    var x2 = document.forms["userForm"]["last"].value;
+		    var x3 = document.forms["userForm"]["login"].value;
+		    var x4 = document.forms["userForm"]["email"].value;
+		    var x5 = document.forms["userForm"]["password"].value;
+		    if (x1 == "" || x2 == "" || x3 == "" || x4 == "" || x5 == "") {
+		    	userAlert();
 		        return false;
 		    }
+		}
+		
+		function userAlert() {
+		    document.getElementById("id02").style.display = "inline";
 		}

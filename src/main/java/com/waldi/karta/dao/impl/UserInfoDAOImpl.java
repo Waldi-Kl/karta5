@@ -64,4 +64,5 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 			return  lista;
 	}
 
+
 }

@@ -81,34 +81,49 @@
 					<hr>
 				</div>
 			</div>
-
 			<div id="AddUser" class="w3-container tab w3-animate-opacity">
-				<form class="w3-container w3-card-4" name="userForm" action="${pageContext.request.contextPath}/userInfo/adduser" onsubmit="return validateUserForm()" method="post">
+				<form class="w3-container w3-card-4" name="userForm"
+					action="${pageContext.request.contextPath}/userInfo/adduser"
+					onsubmit="return validateUserForm()" object="${newUser}" method='POST'>
 					<h2 class="w3-text-black">Dane użytkownika</h2>
 					<p>
 						<label class="w3-text-black"><b>Imię</b></label> <input
-							class="w3-input w3-border" name="first" type="text">
+							class="w3-input w3-border" name="first" type="text" field="*{userName}">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Nazwisko</b></label> <input
-							class="w3-input w3-border" name="last" type="text">
+							class="w3-input w3-border" name="last" type="text" field="*{userSurname}">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Login</b></label> <input
-							class="w3-input w3-border" name="login" type="text">
+							class="w3-input w3-border" name="login" type="text" field="*{login}">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>E-mail</b></label> <input
-							class="w3-input w3-border" name="email" type="text">
+							class="w3-input w3-border" name="email" type="text" field="*{email}">
+					</p>
+					<p>
+						<label class="w3-text-black"><b>Hasło</b></label> <input
+							class="w3-input w3-border" name="password" type="password" field="*{pass}">
 					</p>
 					<p>
 						<button class="w3-btn w3-black">+ Dodaj</button>
 					</p>
 				</form>
 			</div>
-
+		<!-- *************  Wyświetlanie alertu *************** -->
+			<div id="id02" class="w3-modal" style="display: none;">
+								<div class="w3-modal-content">
+									<div class="w3-container w3-red">
+										<span
+											onclick="document.getElementById('id02').style.display='none'"
+											class="w3-button w3-display-topright">&times;</span>
+											<h3>UWAGA!</h3>
+										<p>Uzupełnij wszystkie pola!!!</p>
+									</div>
+								</div>
+							</div>
 		</div>
-
 	</div>
 
 	<jsp:include page="_footer.jsp" />

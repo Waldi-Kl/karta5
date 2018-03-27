@@ -13,6 +13,7 @@ public class UserInfoMapper implements RowMapper<UserInfo> {
 	public static final String BASE_SQL = //
 			 "Select u.id, u.surname, u.name, u.login, u.pass, u.email "//
 			+ " from user u ";
+
 	public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
 
