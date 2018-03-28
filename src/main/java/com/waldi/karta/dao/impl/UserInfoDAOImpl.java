@@ -31,9 +31,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		// + " from User_Roles r where r.Username = ? ";
 		String sql = "select r.rule from rule r where r.id in (select ur.rule_id "//
 				+ "from user_rule ur where ur.user_id =(select u.id from user u where u.login =?))";
-
 		Object[] params = new Object[] { userLogin };
-
 		List<String> roles = this.getJdbcTemplate().queryForList(sql, params, String.class);
 
 		return roles;
@@ -46,7 +44,6 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = UserInfoMapper.BASE_SQL + "where u.login = ?";
 		Object[] params = new Object[] { userLogin };
 		UserInfoMapper mapper = new UserInfoMapper();
-
 		UserInfo userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		return userInfo;
 
@@ -58,11 +55,25 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = UserInfoMapper.BASE_SQL;
 		Object[] params = new Object[] {};
 		UserInfoMapper mapper = new UserInfoMapper();
-
-			List<UserInfo> lista = this.getJdbcTemplate().query(sql, params, mapper);
-
-			return  lista;
+		List<UserInfo> lista = this.getJdbcTemplate().query(sql, params, mapper);
+		return  lista;
 	}
+	
+	public void insertUser(UserInfo user){
+		
+		System.out.println("Nazwisko w  InsertUser: "+ user.getSurname());
+		
+		String sql = "INSERT INTO user " +
+			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";
 
+		
+			
+			try {
+				this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),user.getPass(),user.getEmail());
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("B³¹d: "+ e.getMessage());
+			}
+	}
 
 }

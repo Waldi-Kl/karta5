@@ -13,6 +13,8 @@ public interface UserInfoDAO {
     public List<String> getUserRoles(String userName);
     
     public List<UserInfo> getUsersList();
+    
+    public void insertUser(UserInfo u);
      
 
 }

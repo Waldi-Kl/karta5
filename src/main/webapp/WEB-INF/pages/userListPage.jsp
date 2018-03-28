@@ -88,23 +88,25 @@
 					<h2 class="w3-text-black">Dane użytkownika</h2>
 					<p>
 						<label class="w3-text-black"><b>Imię</b></label> <input
-							class="w3-input w3-border" name="first" type="text" field="*{userName}">
+							class="w3-input w3-border" name="name" type="text" field="*{userName}">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Nazwisko</b></label> <input
-							class="w3-input w3-border" name="last" type="text" field="*{userSurname}">
+							class="w3-input w3-border" name="surname" type="text" field="*{last}">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Login</b></label> <input
-							class="w3-input w3-border" name="login" type="text" field="*{login}">
+							class="w3-input w3-border" name="login" type="text">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>E-mail</b></label> <input
-							class="w3-input w3-border" name="email" type="text" field="*{email}">
+							class="w3-input w3-border" name="email" type="text">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Hasło</b></label> <input
-							class="w3-input w3-border" name="password" type="password" field="*{pass}">
+							class="w3-input w3-border" name="pass" type="password">
+							
+							<!-- class="w3-input w3-border" name="pass" type="password" field="*{pass2}"> -->
 					</p>
 					<p>
 						<button class="w3-btn w3-black">+ Dodaj</button>
