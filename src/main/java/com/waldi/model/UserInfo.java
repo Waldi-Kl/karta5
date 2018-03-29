@@ -14,7 +14,7 @@ public class UserInfo {
 	}
 	
 	public UserInfo(String userSurname, String password) {
-        this.userSurname = userSurname;
+        this.userSurname = userSurname.trim().toUpperCase();
         this.pass = password;
     }
 
@@ -30,8 +30,8 @@ public class UserInfo {
 		return userName;
 	}
 
-	public void setName(String name) {
-		this.userName = name;
+	public void setName(String name) {		
+		this.userName = name.trim().toUpperCase();
 	}
 
 	public String getSurname() {
@@ -39,7 +39,7 @@ public class UserInfo {
 	}
 
 	public void setSurname(String surname) {
-		this.userSurname = surname;
+		this.userSurname = surname.trim().toUpperCase();
 	}
 
 	public String getLogin() {
@@ -47,7 +47,7 @@ public class UserInfo {
 	}
 
 	public void setLogin(String login) {
-		this.login = login;
+		this.login = login.trim().toUpperCase();
 	}
 
 	public String getPass() {
@@ -55,7 +55,7 @@ public class UserInfo {
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		this.pass = pass.trim();
 	}
 
 	public String getEmail() {
@@ -63,7 +63,7 @@ public class UserInfo {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.trim();
 	}
 
 }

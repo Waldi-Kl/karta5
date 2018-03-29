@@ -15,6 +15,8 @@ public interface UserInfoDAO {
     public List<UserInfo> getUsersList();
     
     public void insertUser(UserInfo u);
+    
+    public void deleteUser(String userLogin);
      
 
 }

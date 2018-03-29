@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,12 +20,13 @@ public class UserController {
 	@Autowired
     private UserInfoDAO userInfoDAO;
 
-	@RequestMapping(value = { "/user" }, method = RequestMethod.GET)
-	public String UserInfo(Model model, Principal principal) {
+	@RequestMapping(value = { "/user/{userLog}" }, method = RequestMethod.GET)
+	public String UserInfo(Model model, @PathVariable("userLog") String userLog) {
 
-		// After user login successfully.
-		//String userName = principal.getName();
+		UserInfo userInf = userInfoDAO.getUserInfo(userLog);
 		model.addAttribute("title", "UserInfo");
+		model.addAttribute("message", userLog);
+		model.addAttribute("user", userInf);
 		return "userInfoPage";
 	}
 
@@ -34,7 +36,7 @@ public class UserController {
 		try{
 			list = userInfoDAO.getUsersList();
 		} catch (Exception e){
-			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
 			model.addAttribute("title", "UserInfo");
 			model.addAttribute("message", "Nie powodzenie podczas po³¹czenia do bazy!");
 			return "403Page";
@@ -48,16 +50,36 @@ public class UserController {
 
 	@RequestMapping(value = { "/adduser" }, method = RequestMethod.POST)
 	public String AddUser(Model model,  UserInfo newUser) {
-		System.out.println("adduser: Login:" + newUser.getLogin());
-		System.out.println("adduser: Nazwisko:" + newUser.getSurname());
-		System.out.println("adduser:Imiê:" + newUser.getName());
-		System.out.println("adduser:Email:" + newUser.getEmail());
-		System.out.println("adduser:Pass:" + newUser.getPass());
+		model.addAttribute("title", "UserInfo");
+
+		try{
 		userInfoDAO.insertUser(newUser);
-		model.addAttribute("title", "UserAdd");
+		} catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.			
+			model.addAttribute("message", "Problem: "+ e.getCause());
+			return "403Page";
+		}
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";
+	}
+	
+	@RequestMapping(value = { "/deleteuser" }, method = RequestMethod.POST)
+	public String deleteUser(Model model,  UserInfo newUser) {
+		
+		
+		model.addAttribute("title", "UserInfo");
+		try{
+		userInfoDAO.insertUser(newUser);
+		} catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.			
+			model.addAttribute("message", "Problem: "+ e.getCause());
+			return "403Page";
+		}
+		List<UserInfo> list = userInfoDAO.getUsersList();
+		model.addAttribute("users", list);
+		return "userListPage";
+		
 	}
 	
 	/**

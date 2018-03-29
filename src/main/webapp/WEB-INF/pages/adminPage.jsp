@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="w3-padding w3-white w3-display-container">
-				<h3>Welcome : ${pageContext.request.userPrincipal.name}</h3>
+				<h3>Witaj : ${pageContext.request.userPrincipal.name}</h3>
 
 			</div>
 

@@ -74,7 +74,9 @@
 								<td>${user.surname}</td>
 								<td>${user.login}</td>
 								<td>${user.email}</td>
-								<td><button class="w3-button w3-theme">Edycja</button></td>
+								<td><a href="${pageContext.request.contextPath}/userInfo/user/${user.login}" class="w3-button w3-theme" role="button">Edycja</a></td>
+								
+								<!--  <td><button class="w3-button w3-theme">Edycja</button></td>  -->
 							</tr>
 						</c:forEach>
 					</table>
@@ -88,11 +90,11 @@
 					<h2 class="w3-text-black">Dane użytkownika</h2>
 					<p>
 						<label class="w3-text-black"><b>Imię</b></label> <input
-							class="w3-input w3-border" name="name" type="text" field="*{userName}">
+							class="w3-input w3-border" name="name" type="text">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Nazwisko</b></label> <input
-							class="w3-input w3-border" name="surname" type="text" field="*{last}">
+							class="w3-input w3-border" name="surname" type="text">
 					</p>
 					<p>
 						<label class="w3-text-black"><b>Login</b></label> <input

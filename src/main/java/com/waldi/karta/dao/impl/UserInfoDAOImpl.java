@@ -61,19 +61,17 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	
 	public void insertUser(UserInfo user){
 		
-		System.out.println("Nazwisko w  InsertUser: "+ user.getSurname());
 		
 		String sql = "INSERT INTO user " +
-			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";
+			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";		
+		this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),user.getPass(),user.getEmail());
 
-		
-			
-			try {
-				this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),user.getPass(),user.getEmail());
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("B³¹d: "+ e.getMessage());
-			}
 	}
+	
+	public void deleteUser(String userLogin) {
+		String sql = "DELETE FROM user WHERE login=?";
+		this.getJdbcTemplate().update(sql, userLogin.trim());
+	}
+
 
 }

@@ -59,8 +59,9 @@
 											onclick="document.getElementById('id01').style.display='none'"
 											class="w3-button w3-display-topright">&times;</span>
 										<p>Logowanie Nieudane!!!</p>
-										<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
-										<p>Info z kontrolera:${message}</p>
+									<!--	<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+										<p>Info z kontrolera:${message}</p>-->
+										<p>Sprawdź wprowadzane dane.</p>
 									</div>
 								</div>
 							</div>
