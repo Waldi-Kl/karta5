@@ -21,7 +21,7 @@ public class UserController {
     private UserInfoDAO userInfoDAO;
 
 	@RequestMapping(value = { "/user/{userLog}" }, method = RequestMethod.GET)
-	public String UserInfo(Model model, @PathVariable("userLog") String userLog) {
+	public String userInfo(Model model, @PathVariable("userLog") String userLog) {
 
 		UserInfo userInf = userInfoDAO.getUserInfo(userLog);
 		model.addAttribute("title", "UserInfo");
@@ -31,7 +31,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
-	public String UserListController(Model model){		
+	public String userListController(Model model){		
 		List<UserInfo> list = null;		
 		try{
 			list = userInfoDAO.getUsersList();
@@ -49,8 +49,12 @@ public class UserController {
 	
 
 	@RequestMapping(value = { "/adduser" }, method = RequestMethod.POST)
-	public String AddUser(Model model,  UserInfo newUser) {
+	public String addUser(Model model,  UserInfo newUser) {
 		model.addAttribute("title", "UserInfo");
+		if (newUser.getLogin().equals("")){
+			model.addAttribute("message", "Problem: brak loginu.");
+			return "403Page";
+		}
 
 		try{
 		userInfoDAO.insertUser(newUser);

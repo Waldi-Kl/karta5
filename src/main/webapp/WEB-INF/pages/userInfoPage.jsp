@@ -47,37 +47,14 @@
 					</div>
 
 					<div id="UserInfo" class="w3-container tab w3-animate-opacity">
-
 						<!--  Tu jakaś treść  -->
 						<div class="w3-container">
-							<!--<table class="w3-table form-horizontal w3-striped w3-border"
-								id="userTable">
-								<tr>
-									<th>Imię</th>
-									<th>Nazwisko</th>
-									<th>Login</th>
-									<th>E-mail</th>
-									<th></th>
-								</tr>
-								<tr>
-									<td>${user.name}</td>
-									<td>${user.surname}</td>
-									<td>${user.login}</td>
-									<td>${user.email}</td>
-								<td><a href="#" class="w3-button w3-theme" role="button">COS</a></td>
-
-									  href="${pageContext.request.contextPath}/userInfo/user/${user.login}"
-								</tr>
-							</table> -->
 							<hr>
-
-
 							<div class="w3-card">
 								<div class="w3-container w3-black">
 									<h3>Dane do zmiany</h3>
 								</div>
 								<form action="">
-
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
 											<b><label class="w3-text-black">Imię:</label></b>
@@ -87,7 +64,6 @@
 												value="${user.name}" name="name">
 										</div>
 									</div>
-
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
 											<b><label class="w3-text-black" for="surname">Nazwisko:</label></b>
@@ -116,11 +92,8 @@
 												value="xxxxxxx" name="pass">
 										</div>
 									</div>
-
-
 									<div class="container">
 										<a href="#" class="w3-button w3-theme" role="button">Potwierdź</a>
-
 									</div>
 								</form>
 							</div>
@@ -129,7 +102,31 @@
 						</div>
 					</div>
 					<div id="UserRole" class="w3-container tab w3-animate-opacity">
-						<p>Info o rolach</p>
+						<div class="w3-container">
+							<hr>
+							<div class="w3-card">
+								<div class="w3-container w3-black">
+									<h3>Role przypisne do użytkownika</h3>
+								</div>
+								<form action="">
+									<div class="w3-row">
+										<div class="w3-col" style="width: 150px">
+											<b><label class="w3-text-black">Rola:</label></b>
+										</div>
+										<div class="w3-rest">
+											<input type="text" class="w3-input w3-border-1" id="role"
+												value="${role.name}" name="role">
+										</div>
+									</div>
+
+									<div class="container">
+										<a href="#" class="w3-button w3-theme" role="button">Potwierdź</a>
+									</div>
+								</form>
+							</div>
+							<hr>
+
+						</div>
 					</div>
 
 				</div>
