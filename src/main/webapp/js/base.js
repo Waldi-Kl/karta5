@@ -112,11 +112,11 @@
 		
 		// Walidacja formulaża
 		function validateUserForm() {
-		    var x1 = document.forms["userForm"]["first"].value;
-		    var x2 = document.forms["userForm"]["last"].value;
+		    var x1 = document.forms["userForm"]["name"].value;
+		    var x2 = document.forms["userForm"]["surname"].value;
 		    var x3 = document.forms["userForm"]["login"].value;
 		    var x4 = document.forms["userForm"]["email"].value;
-		    var x5 = document.forms["userForm"]["password"].value;
+		    var x5 = document.forms["userForm"]["pass"].value;
 		    if (x1 == "" || x2 == "" || x3 == "" || x4 == "" || x5 == "") {
 		    	userAlert();
 		        return false;
@@ -125,4 +125,8 @@
 		
 		function userAlert() {
 		    document.getElementById("id02").style.display = "inline";
+		}
+		
+		function myFunction2() {
+		    document.getElementById("demo").innerHTML = "Hello World";
 		}

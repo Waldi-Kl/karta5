@@ -27,21 +27,6 @@
 					</div>
 				</div>
 
-		<!-- 		<div class="w3-dropdown-hover">
-					<button class="w3-button w3-padding-16 w3-theme">
-						Karta <i class="fa fa-caret-down"></i>
-					</button>
-					<div class="w3-dropdown-content w3-card-4 w3-bar-block">
-						<a href="${pageContext.request.contextPath}/cardInfo/fishing"
-							class="w3-bar-item w3-button">Wędkarska</a> <a
-							href="${pageContext.request.contextPath}/cardInfo/hunting"
-							class="w3-bar-item w3-button">Łowiectwa</a> <a
-							href="${pageContext.request.contextPath}/cardInfo/guarding"
-							class="w3-bar-item w3-button">Strażnikow</a>
-					</div>
-				</div>
-				-->
-
 			</div>
 		<!-- 	------------------------------------------ login info  -------------------------  -->
 			<div class="w3-col s3 w3-center">

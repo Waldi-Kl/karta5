@@ -111,7 +111,7 @@
 							<!-- class="w3-input w3-border" name="pass" type="password" field="*{pass2}"> -->
 					</p>
 					<p>
-						<button class="w3-btn w3-black">+ Dodaj</button>
+						<button class="w3-btn w3-black" >+ Dodaj</button>
 					</p>
 				</form>
 			</div>
