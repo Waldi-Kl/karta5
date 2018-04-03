@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/admin")
 public class AdminController {
 
-
 	   @RequestMapping(method = RequestMethod.GET)
 	   public String adminPage(Model model) {
 		   model.addAttribute("title", "Admin");

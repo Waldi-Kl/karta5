@@ -115,7 +115,7 @@
 										</div>
 										<div class="w3-rest">
 											<input type="text" class="w3-input w3-border-1" id="role"
-												value="${role.name}" name="role">
+												value="${role.get(0)}" name="rule">
 										</div>
 									</div>
 

@@ -22,11 +22,12 @@ public class UserController {
 
 	@RequestMapping(value = { "/user/{userLog}" }, method = RequestMethod.GET)
 	public String userInfo(Model model, @PathVariable("userLog") String userLog) {
-
+		List<String> userRules= userInfoDAO.getUserRoles(userLog);
 		UserInfo userInf = userInfoDAO.getUserInfo(userLog);
 		model.addAttribute("title", "UserInfo");
 		model.addAttribute("message", userLog);
 		model.addAttribute("user", userInf);
+		model.addAttribute("rule", userRules);
 		return "userInfoPage";
 	}
 
@@ -69,8 +70,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = { "/deleteuser" }, method = RequestMethod.POST)
-	public String deleteUser(Model model,  UserInfo newUser) {
-		
+	public String deleteUser(Model model,  UserInfo newUser) {		
 		
 		model.addAttribute("title", "UserInfo");
 		try{

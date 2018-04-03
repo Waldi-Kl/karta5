@@ -32,9 +32,9 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = "select r.rule from rule r where r.id in (select ur.rule_id "//
 				+ "from user_rule ur where ur.user_id =(select u.id from user u where u.login =?))";
 		Object[] params = new Object[] { userLogin };
-		List<String> roles = this.getJdbcTemplate().queryForList(sql, params, String.class);
+		List<String> rules = this.getJdbcTemplate().queryForList(sql, params, String.class);
 
-		return roles;
+		return rules;
 	}
 
 	public UserInfo getUserInfo(String userLogin) {

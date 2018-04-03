@@ -27,10 +27,9 @@
 			</div>
 			<!-- 	------------------------------------------ login info  -------------------------  -->
 			<div class="w3-col s3 w3-center">
-				<div class="w3-container w3-cell">
-					<p>Login: ${pageContext.request.userPrincipal.name}</p>
+				<div class="w3-container w3-cell w3-cell-middle">
+				<p>Login: ${pageContext.request.userPrincipal.name}</p>							  
 				</div>
-
 				<div class="w3-container w3-cell">
 					<c:if test="${pageContext.request.userPrincipal.name != null}">
 						<a href="${pageContext.request.contextPath}/logout"
