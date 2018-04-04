@@ -63,7 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("userlogin")//	Parametr z formularza logowania
                 .passwordParameter("password")//	Parametr z formularza logowania
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
- 
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful"); 
     }
 }

@@ -23,7 +23,16 @@ public class KardDBAuthenticationService implements UserDetailsService{
  
     
     public UserDetails loadUserByUsername(String userlogin) throws UsernameNotFoundException {
-        UserInfo userInfo = userInfoDAO.getUserInfo(userlogin);
+    	UserInfo userInfo=null;
+    	try{
+    		userInfo = userInfoDAO.getUserInfo(userlogin);
+		} catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
+
+			System.out.println("Posz³o: getUserIngo=NULL");
+		}
+        //UserInfo userInfo = userInfoDAO.getUserInfo(userlogin);
+        //System.out.println("User to :"+ userInfo.getSurname());
       
         if (userInfo == null) {
         	System.out.println("loadUserByUsername Author... ?");

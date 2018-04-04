@@ -22,12 +22,12 @@ public class UserController {
 
 	@RequestMapping(value = { "/user/{userLog}" }, method = RequestMethod.GET)
 	public String userInfo(Model model, @PathVariable("userLog") String userLog) {
-		List<String> userRules= userInfoDAO.getUserRoles(userLog);
+		List<String> userRoles= userInfoDAO.getUserRoles(userLog);
 		UserInfo userInf = userInfoDAO.getUserInfo(userLog);
 		model.addAttribute("title", "UserInfo");
-		model.addAttribute("message", userLog);
+		//model.addAttribute("message", userLog);
 		model.addAttribute("user", userInf);
-		model.addAttribute("rule", userRules);
+		model.addAttribute("role", userRoles);
 		return "userInfoPage";
 	}
 
