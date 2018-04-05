@@ -17,12 +17,7 @@ public class MainController {
        model.addAttribute("message", "Witamy na stronie powitalnej!");
        return "homePage";
    }
- 
-//   @RequestMapping(value = "/admin", method = RequestMethod.GET)
-//   public String adminPage(Model model) {
-//	   model.addAttribute("title", "Admin");
-//       return "adminPage";
-//   }
+
  
    @RequestMapping(value = "/login", method = RequestMethod.GET)
    public String loginPage(Model model ) {

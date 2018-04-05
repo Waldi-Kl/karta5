@@ -23,6 +23,7 @@ public class UserController {
 	@RequestMapping(value = { "/user/{userLog}" }, method = RequestMethod.GET)
 	public String userInfo(Model model, @PathVariable("userLog") String userLog) {
 		List<String> userRoles= userInfoDAO.getUserRoles(userLog);
+		if (userRoles.size()==0) userRoles.add("Brak przypisanej roli");
 		UserInfo userInf = userInfoDAO.getUserInfo(userLog);
 		model.addAttribute("title", "UserInfo");
 		//model.addAttribute("message", userLog);
@@ -86,13 +87,28 @@ public class UserController {
 		
 	}
 	
-	/**
 	@RequestMapping(value = { "/updateuser" }, method = RequestMethod.POST)
-	public String putUser(Model model) {
+	public String putUser(Model model,  UserInfo myUser) {
 		model.addAttribute("title", "UserInfo");
+		System.out.println("Nazwisko :"+ myUser.getSurname());
+		try{
+		userInfoDAO.updateUser(myUser);
+		} catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.			
+			model.addAttribute("message", "Problem: "+ e.getCause());
+			return "403Page";
+		}
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
-		return "userAddPage";
+		return "userListPage";
 	}
-	**/
+	
+	@RequestMapping(value = { "/updaterole" }, method = RequestMethod.POST)
+	public String putUserRole(Model model) {
+		model.addAttribute("title", "UserInfo");
+
+		List<UserInfo> list = userInfoDAO.getUsersList();
+		model.addAttribute("users", list);
+		return "userListPage";
+	}
 }

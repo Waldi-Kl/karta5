@@ -54,7 +54,17 @@
 								<div class="w3-container w3-black">
 									<h3>Dane do zmiany</h3>
 								</div>
-								<form action="">
+								<form class="w3-container w3-card-4" name="userInfoForm" accept-charset="utf-8"
+									action="${pageContext.request.contextPath}/userInfo/updateuser"
+									 method='POST'>
+									<!-- object="${User}" method='POST'> -->
+									<div class="w3-row">
+
+										<div class="w3-rest">
+											<input type="hidden" class="w3-input w3-border-1" id="id"
+												value="${user.id}" name="id">
+										</div>
+									</div>
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
 											<b><label class="w3-text-black">Imię:</label></b>
@@ -66,7 +76,7 @@
 									</div>
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
-											<b><label class="w3-text-black" for="surname">Nazwisko:</label></b>
+											<b><label class="w3-text-black" >Nazwisko:</label></b>
 										</div>
 										<div class="w3-rest">
 											<input type="text" class="w3-input w3-border-1" id="surname"
@@ -75,25 +85,17 @@
 									</div>
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
-											<b><label class="w3-text-black" for="surname">Email:</label></b>
+											<b><label class="w3-text-black">Email:</label></b>
 										</div>
 										<div class="w3-rest">
 											<input type="text" class="w3-input w3-border-1" id="email"
-												value="${user.email}" name="surname">
+												value="${user.email}" name="email">
 										</div>
 									</div>
 
-									<div class="w3-row">
-										<div class="w3-col" style="width: 150px">
-											<b><label class="w3-text-black" for="surname">Hasło:</label></b>
-										</div>
-										<div class="w3-rest">
-											<input type="password" class="w3-input w3-border-1" id="pass"
-												value="xxxxxxx" name="pass">
-										</div>
-									</div>
 									<div class="container">
-										<a href="#" class="w3-button w3-theme" role="button">Potwierdź</a>
+										<!-- <a href="#" class="w3-button w3-theme" role="button">Potwierdź</a> -->
+										<button class="w3-button w3-theme" >Potwierdź</button>
 									</div>
 								</form>
 							</div>
@@ -108,19 +110,27 @@
 								<div class="w3-container w3-black">
 									<h3>Role przypisne do użytkownika</h3>
 								</div>
-								<form action="">
+								<form class="w3-container w3-card-4" name="userInfoForm"
+									action="${pageContext.request.contextPath}/userInfo/updaterole"
+									 method='POST'>
 									<div class="w3-row">
 										<div class="w3-col" style="width: 150px">
 											<b><label class="w3-text-black">Rola:</label></b>
 										</div>
 										<div class="w3-rest">
-											<input type="text" class="w3-input w3-border-1" id="role"
-												value="${role.get(0)}" name="rule">
+											<!-- <input type="text" class="w3-input w3-border-1" id="role"
+												value="${role.get(0)}" name="rule">  -->
+											<select class="w3-select" name="option">
+												<option value="" disabled selected>${role.get(0)}</option>
+												<option value="1">ADMIN</option>
+												<option value="2">USER</option>
+												<option value="3">BRAK</option>
+											</select>
 										</div>
 									</div>
 
 									<div class="container">
-										<a href="#" class="w3-button w3-theme" role="button">Potwierdź</a>
+										<button class="w3-button w3-theme" >Potwierdź</button>
 									</div>
 								</form>
 							</div>
