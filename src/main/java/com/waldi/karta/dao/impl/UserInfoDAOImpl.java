@@ -1,5 +1,6 @@
 package com.waldi.karta.dao.impl;
 
+import java.io.BufferedReader;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -78,9 +79,10 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
 	public void updateUser(UserInfo user) {
 
+		System.out.println("Nazwisko zupdateUser :"+ user.getSurname());
 		String sql = "UPDATE user " +
 		"SET surname = ?, name= ?, email= ? WHERE id = ?";
-		this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getEmail(),user.getId());
+		this.getJdbcTemplate().update(sql,  user.getSurname(), user.getName(),user.getEmail(),user.getId());
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.waldi.karta.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
@@ -88,9 +92,28 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = { "/updateuser" }, method = RequestMethod.POST)
-	public String putUser(Model model,  UserInfo myUser) {
+	public String putUser(Model model,  UserInfo myUser) throws IOException {
 		model.addAttribute("title", "UserInfo");
-		System.out.println("Nazwisko :"+ myUser.getSurname());
+// ------------------------ To jest zmiana kodowania z tekstu przesy³anego z formulzrza -------------------------------------
+		  String newSName = myUser.getSurname();
+		  newSName = URLEncoder.encode( myUser.getSurname(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
+		  newSName = URLDecoder.decode( newSName, "UTF-8" );
+		  System.out.println("Po kodowaniu :"+ newSName);
+		  myUser.setSurname(newSName);
+		  
+		  String newName = myUser.getName();
+		  newName = URLEncoder.encode( myUser.getName(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
+		  newSName = URLDecoder.decode( newName, "UTF-8" );
+		  System.out.println("Po kodowaniu :"+ newName);
+		  myUser.setName(newName);
+		  
+		  String newEmail = myUser.getEmail();
+		  newEmail = URLEncoder.encode( myUser.getEmail(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
+		  newEmail = URLDecoder.decode( newEmail, "UTF-8" );
+		  System.out.println("Po kodowaniu :"+ newEmail);
+		  myUser.setEmail(newEmail);
+		  
+		  
 		try{
 		userInfoDAO.updateUser(myUser);
 		} catch (Exception e){
