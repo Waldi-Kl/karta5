@@ -7,6 +7,8 @@ import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,12 +57,14 @@ public class UserController {
 	
 
 	@RequestMapping(value = { "/adduser" }, method = RequestMethod.POST)
-	public String addUser(Model model,  UserInfo newUser) {
+	public String addUser(Model model,  UserInfo newUser) throws IOException {
 		model.addAttribute("title", "UserInfo");
 		if (newUser.getLogin().equals("")){
 			model.addAttribute("message", "Problem: brak loginu.");
 			return "403Page";
 		}
+		
+		newUser.changeUser();
 
 		try{
 		userInfoDAO.insertUser(newUser);
@@ -94,26 +98,12 @@ public class UserController {
 	@RequestMapping(value = { "/updateuser" }, method = RequestMethod.POST)
 	public String putUser(Model model,  UserInfo myUser) throws IOException {
 		model.addAttribute("title", "UserInfo");
-// ------------------------ To jest zmiana kodowania z tekstu przesy³anego z formulzrza -------------------------------------
-		  String newSName = myUser.getSurname();
-		  newSName = URLEncoder.encode( myUser.getSurname(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
-		  newSName = URLDecoder.decode( newSName, "UTF-8" );
-		  System.out.println("Po kodowaniu :"+ newSName);
-		  myUser.setSurname(newSName);
-		  
-		  String newName = myUser.getName();
-		  newName = URLEncoder.encode( myUser.getName(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
-		  newSName = URLDecoder.decode( newName, "UTF-8" );
-		  System.out.println("Po kodowaniu :"+ newName);
-		  myUser.setName(newName);
-		  
-		  String newEmail = myUser.getEmail();
-		  newEmail = URLEncoder.encode( myUser.getEmail(), "ISO-8859-1" ); // H%C3%A9l%C3%A8ne
-		  newEmail = URLDecoder.decode( newEmail, "UTF-8" );
-		  System.out.println("Po kodowaniu :"+ newEmail);
-		  myUser.setEmail(newEmail);
-		  
-		  
+		
+		System.out.println("Nazwisko :"+ myUser.getSurname());
+		System.out.println("Imiê :"+ myUser.getName());
+		System.out.println("Email :"+ myUser.getEmail());
+// ------------------------ To jest zmiana kodowania z tekstu przesy³anego z formulzrza -------------------------------------		  
+		myUser.changeUser();
 		try{
 		userInfoDAO.updateUser(myUser);
 		} catch (Exception e){
@@ -127,9 +117,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = { "/updaterole" }, method = RequestMethod.POST)
-	public String putUserRole(Model model) {
+	public String putUserRole(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "UserInfo");
-
+System.out.println("Rola to :" + request);
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";

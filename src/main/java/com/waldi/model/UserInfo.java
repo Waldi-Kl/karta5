@@ -1,5 +1,10 @@
 package com.waldi.model;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 public class UserInfo {
 	
 	private int userId;
@@ -17,6 +22,27 @@ public class UserInfo {
         this.userSurname = userSurname.trim().toUpperCase();
         this.pass = password;
     }
+
+	// ------------------------ To jest zmiana kodowania z tekstu przesy³anego z formulzrza -------------------------------------		
+	public UserInfo	changeUser() throws IOException { 
+	
+			String newSName = this.getSurname();
+		  newSName = URLEncoder.encode( this.getSurname(), "ISO-8859-1" ); 
+		  newSName = URLDecoder.decode( newSName, "UTF-8" );
+		  this.setSurname(newSName);
+		  
+		  String newName = this.getName();
+		  newName = URLEncoder.encode( this.getName(), "ISO-8859-1" ); 
+		  newName = URLDecoder.decode( newName, "UTF-8" );
+		  this.setName(newName);
+		  
+		  String newEmail = this.getEmail();
+		  newEmail = URLEncoder.encode( this.getEmail(), "ISO-8859-1" ); 
+		  newEmail = URLDecoder.decode( newEmail, "UTF-8" );
+		  this.setEmail(newEmail);
+	  
+	  return this;
+	}
 
 	public int getId() {
 		return userId;

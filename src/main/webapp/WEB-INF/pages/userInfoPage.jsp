@@ -111,7 +111,7 @@
 								<div class="w3-container w3-black">
 									<h3>Role przypisne do użytkownika</h3>
 								</div>
-								<form class="w3-container w3-card-4" name="userInfoForm"
+								<form class="w3-container w3-card-4" name="userInfoForm" accept-charset="utf-8"
 									action="${pageContext.request.contextPath}/userInfo/updaterole"
 									 method='POST'>
 									<div class="w3-row">
