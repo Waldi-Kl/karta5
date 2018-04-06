@@ -123,9 +123,9 @@
 												value="${role.get(0)}" name="rule">  -->
 											<select class="w3-select" name="option">
 												<option value="" disabled selected>${role.get(0)}</option>
-												<option value="1">ADMIN</option>
-												<option value="2">USER</option>
-												<option value="3">BRAK</option>
+												<option value="ADMIN">ADMIN</option>
+												<option value="USER">USER</option>
+												<option value="BRAK">BRAK</option>
 											</select>
 										</div>
 									</div>

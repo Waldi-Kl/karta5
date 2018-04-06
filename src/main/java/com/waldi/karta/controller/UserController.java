@@ -98,10 +98,6 @@ public class UserController {
 	@RequestMapping(value = { "/updateuser" }, method = RequestMethod.POST)
 	public String putUser(Model model,  UserInfo myUser) throws IOException {
 		model.addAttribute("title", "UserInfo");
-		
-		System.out.println("Nazwisko :"+ myUser.getSurname());
-		System.out.println("Imiê :"+ myUser.getName());
-		System.out.println("Email :"+ myUser.getEmail());
 // ------------------------ To jest zmiana kodowania z tekstu przesy³anego z formulzrza -------------------------------------		  
 		myUser.changeUser();
 		try{
@@ -119,7 +115,13 @@ public class UserController {
 	@RequestMapping(value = { "/updaterole" }, method = RequestMethod.POST)
 	public String putUserRole(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "UserInfo");
-System.out.println("Rola to :" + request);
+System.out.println("Rola to :" + request.getParameter("option"));
+String[] values=request.getParameterValues("option");
+System.out.println("Selected Values...");    
+for(int i=0;i<values.length;i++)
+{
+	System.out.println("Nowy:"+values[i]);
+}
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";
