@@ -129,7 +129,7 @@
 											</select>
 										</div>
 									</div>
-
+									<input type="hidden" name="userID" value="${user.id}">
 									<div class="container">
 										<button class="w3-button w3-theme" >Potwierdź</button>
 									</div>

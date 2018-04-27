@@ -19,9 +19,10 @@
 					</button>
 					<div class="w3-dropdown-content w3-card-4 w3-bar-block">
 						<a href="${pageContext.request.contextPath}/userInfo/list"
-							class="w3-bar-item w3-button">Lista</a> <a
+							class="w3-bar-item w3-button">Lista</a>
+							<!--  <a
 							href="${pageContext.request.contextPath}/userInfo/user"
-							class="w3-bar-item w3-button">Zarządzaj</a>
+							class="w3-bar-item w3-button">Zarządzaj</a> -->
 					</div>
 				</div>
 				<div class="w3-dropdown-hover">
