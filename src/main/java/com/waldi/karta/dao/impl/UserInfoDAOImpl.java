@@ -63,13 +63,10 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		return  lista;
 	}
 	
-	public void insertUser(UserInfo user){
-		
-		
+	public void insertUser(UserInfo user){		
 		String sql = "INSERT INTO user " +
 			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";		
 		this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),user.getPass(),user.getEmail());
-
 	}
 	
 	public void deleteUser(String userLogin) {
@@ -78,8 +75,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	}
 
 	public void updateUser(UserInfo user) {
-
-		System.out.println("Nazwisko zupdateUser :"+ user.getSurname());
+		System.out.println("Nazwisko z updateUser :"+ user.getSurname());
 		String sql = "UPDATE user " +
 		"SET surname = ?, name= ?, email= ? WHERE id = ?";
 		this.getJdbcTemplate().update(sql,  user.getSurname(), user.getName(),user.getEmail(),user.getId());
