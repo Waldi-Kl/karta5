@@ -123,7 +123,23 @@ public class UserController {
 		model.addAttribute("title", "UserInfo");
 		System.out.println("Rola to :" + request.getParameter("option"));
 		System.out.println("userID to :" + request.getParameter("userID"));
+		int id = Integer.parseInt(request.getParameter("userID"));
+		String rule = request.getParameter("option");
+		switch (rule) {
+		case "ADMIN":
+			System.out.println("Admin Update");
+			userInfoDAO.updateRule(1, id);
+			break;
+		case "USER":
+			System.out.println("User Update");
+			userInfoDAO.updateRule(2, id);
+			break;
 
+		default:
+			System.out.println("Default");
+			break;
+		}
+		
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";

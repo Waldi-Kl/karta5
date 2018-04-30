@@ -75,10 +75,25 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	}
 
 	public void updateUser(UserInfo user) {
-		System.out.println("Nazwisko z updateUser :"+ user.getSurname());
+		//System.out.println("Nazwisko z updateUser :"+ user.getSurname());
 		String sql = "UPDATE user " +
 		"SET surname = ?, name= ?, email= ? WHERE id = ?";
 		this.getJdbcTemplate().update(sql,  user.getSurname(), user.getName(),user.getEmail(),user.getId());
+	}
+
+	public void updateRule(int rule, int id) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO user_rule " +
+					"VALUES (user_id, rule_id) "+
+					"ON DUPLICATE KEY UPDAT user_id= ?, rule_id= ?";
+
+		this.getJdbcTemplate().update(sql,  rule, id);
+	}
+
+	@Override
+	public void deleteRule(int idUser) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -15,6 +15,7 @@ public interface UserInfoDAO {
     public void insertUser(UserInfo u);    
     public void deleteUser(String userLogin);
     public void updateUser(UserInfo user);
-    public void updateRule(String rule, String);
+    public void updateRule(int rule, int id );
+    public void deleteRule(int idUser);
 
 }
