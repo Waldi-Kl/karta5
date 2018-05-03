@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,10 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
    @RequestMapping(value = { "/", "/homepage"}, method = RequestMethod.GET)
-   public String MainController(Model model) {
+   public String mainController(Model model) {
        model.addAttribute("title", "Welcome");
        model.addAttribute("message", "Witamy na stronie powitalnej!");
        return "homePage";
+   }
+   
+   @RequestMapping(value = {"/newpass/{userLog}"}, method = RequestMethod.GET)
+   public String newPassword(Model model, @PathVariable("userLog") String userLog) {
+       model.addAttribute("title", "Karta wêdkarska");
+       model.addAttribute("message", userLog);
+       return "newPass";
    }
 
  
@@ -34,7 +42,7 @@ public class MainController {
 
    @RequestMapping(value = "/403", method = RequestMethod.GET)
    public String accessDenied(Model model, Principal principal) {
-        
+	   model.addAttribute("title", "403"); 
        if (principal != null) {
            model.addAttribute("message", "Witaj " + principal.getName()
                    + "<br> Nie posiadasz uprawniê do tej strony!");

@@ -9,39 +9,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="${pageContext.request.contextPath}/css/w3.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/css/w3_theme.css" rel="stylesheet" type="text/css"/>
 
 <title>${title}</title>
 </head>
-<body><!-- 
-	<header class="w3-container w3-theme">
-	<div class="w3-bar">
-		<div class="w3-row">
-			<div class="w3-col s9 w3-center">
-				<a href="${pageContext.request.contextPath}/"
-					class="w3-bar-item w3-button w3-padding-16"><i
-					class="fa fa-home"></i> Home</a>
-			</div>-->
-			<!-- 	------------------------------------------ login info  -------------------------  -->
-			<!--<div class="w3-col s3 w3-center">
-				<div class="w3-container w3-cell">
-					<p>Login: ${pageContext.request.userPrincipal.name}</p>
-				</div>
-				<div class="w3-container w3-cell">
-					<c:if test="${pageContext.request.userPrincipal.name != null}">
-						<a href="${pageContext.request.contextPath}/logout"
-							class="w3-button w3-padding-16"><i
-							class="fa fa-sign-out"></i> Log out</a>
-					</c:if>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</header> -->
 
 	<header class="w3-container w3-theme">
 	<div class="w3-bar">
@@ -53,19 +26,6 @@
 					class="fa fa-home"></i> Home</a>
 			</div>
 
-			<!-- 	------------------------------------------ login info  -------------------------  -->
-			<div class="w3-col s3 w3-center">
-				<div class="w3-container w3-cell w3-cell-middle">
-				<p>Login: ${pageContext.request.userPrincipal.name}</p>							  
-				</div>
-				<div class="w3-container w3-cell">
-					<c:if test="${pageContext.request.userPrincipal.name != null}">
-						<a href="${pageContext.request.contextPath}/logout"
-							class="w3-button w3-padding-16"><i
-							class="fa fa-sign-out"></i> Log out</a>
-					</c:if>
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -78,7 +38,7 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 			<div>
-				<h1>Nie powodzenie</h1>
+				<h1>Podaj dane do logowania.</h1>
 				<h3>${message}</h3>
 
 				<!--  Tu jakaś treść  -->

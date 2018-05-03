@@ -139,8 +139,7 @@ public class UserController {
 			userInfoDAO.updateRule(0, idUser);
 			break;
 		}
-		}
-		
+		}		
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";

@@ -8,19 +8,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-<link href="${pageContext.request.contextPath}/css/w3.css" rel="stylesheet" type="text/css"/>
+
+<link href="${pageContext.request.contextPath}/css/w3.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/w3_theme.css"
+	rel="stylesheet" type="text/css" />
 
 <title>${title}</title>
 </head>
 <body>
-
 	<header class="w3-container w3-theme">
 	<div class="w3-bar">
 		<a href="${pageContext.request.contextPath}/"
@@ -43,7 +46,7 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 			<div>
-					<h2>Logowanie</h2>
+				<h2>Logowanie</h2>
 
 				<div class="w3-card w3-theme">
 					<!-- //w3-theme w3-white -->
@@ -60,7 +63,7 @@
 											onclick="document.getElementById('id01').style.display='none'"
 											class="w3-button w3-display-topright">&times;</span>
 										<p>Logowanie Nieudane!!!</p>
-									<!--	<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+										<!--	<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
 										<p>Info z kontrolera:${message}</p>-->
 										<p>Sprawdź wprowadzane dane.</p>
 									</div>
@@ -77,7 +80,7 @@
 							action="${pageContext.request.contextPath}/j_spring_security_check"
 							method='POST'>
 							<p>
-								<label class="w3-text-white"><b>Login</b></label> <input
+								<label class="w3-text-white"><b>Login</b></label> <input id="login"
 									class="w3-input w3-border" type='text' name='userlogin'
 									value='' />
 							</p>
@@ -89,6 +92,11 @@
 								<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
 							</p>
 						</form>
+						<div class="w3-container">
+						<p  class="w3-tiny">
+							<a href="${pageContext.request.contextPath}/newpass/xxxgxg">Zmień hasło</a>
+						</p>
+						</div>
 					</div>
 
 				</div>
@@ -102,7 +110,9 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">
-		
 	</script>
+	<script>var myElement = document.getElementById("login");
+	console.log("To jest login: "+ myElement.innerHTML);
+	console.log("A co ty na yo");</script>
 </body>
 </html>
