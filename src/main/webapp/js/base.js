@@ -2,6 +2,7 @@
  * 
  */
 
+
 // Side navigation
 		function w3_open() {
 			var x = document.getElementById("mySidebar");
@@ -127,6 +128,28 @@
 		    document.getElementById("id02").style.display = "inline";
 		}
 		
+		// Walidacja formulaża reseru hasła
+		function validatePassChangeForm() {
+			console.log(5 + 6);
+			console.log("Uruchomił się check form");
+		    var x1 = document.forms["passupdate"]["newpassword"].value;
+		    var x2 = document.forms["passupdate"]["newpassword2"].value;
+		    if (x1 == "" || x1!==x2 || x1.length < 3) {
+		    	userAlert2();
+		        return false;
+		    }
+		}
+		function userAlert2() {
+		    document.getElementById("id03").style.display = "inline";
+		}
+
+		
 		function myFunction2() {
 		    document.getElementById("demo").innerHTML = "Hello World";
+		}		
+		
+		function myFunction3() {
+			var myElement = document.getElementById("login");
+			var text = myElement.value;
+		    document.getElementById("myAnchor").href = myContextPath +"/newpass/"+ text;
 		}

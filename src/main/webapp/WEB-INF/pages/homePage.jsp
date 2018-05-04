@@ -68,7 +68,7 @@
 		<div class="w3-container w3-cell ">
 			<div>
 				<h1>Witaj w aplikacji Karta Wędkarska</h1>
-				<h3>Wybierz rodzaj zadania.</h3>
+				<h3>${message}</h3>
 
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">

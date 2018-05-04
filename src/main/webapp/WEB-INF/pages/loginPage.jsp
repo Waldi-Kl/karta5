@@ -10,12 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-
 <link href="${pageContext.request.contextPath}/css/w3.css"
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/w3_theme.css"
@@ -23,7 +17,9 @@
 
 <title>${title}</title>
 </head>
+
 <body>
+
 	<header class="w3-container w3-theme">
 	<div class="w3-bar">
 		<a href="${pageContext.request.contextPath}/"
@@ -47,6 +43,7 @@
 		<div class="w3-container w3-cell ">
 			<div>
 				<h2>Logowanie</h2>
+				<h3>${message}</h3>
 
 				<div class="w3-card w3-theme">
 					<!-- //w3-theme w3-white -->
@@ -80,13 +77,12 @@
 							action="${pageContext.request.contextPath}/j_spring_security_check"
 							method='POST'>
 							<p>
-								<label class="w3-text-white"><b>Login</b></label> <input id="login"
-									class="w3-input w3-border" type='text' name='userlogin'
-									value='' />
+								<label class="w3-text-white"><b>Login</b></label>
+								<input id="login" class="w3-input w3-border" type="text" name="userlogin" value=""/>
 							</p>
 							<p>
 								<label class="w3-text-white"><b>Pasword</b></label> <input
-									class="w3-input w3-border" type='password' name='password' />
+									class="w3-input w3-border" type="password" name="password" />
 							</p>
 							<p>
 								<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
@@ -94,7 +90,7 @@
 						</form>
 						<div class="w3-container">
 						<p  class="w3-tiny">
-							<a href="${pageContext.request.contextPath}/newpass/xxxgxg">Zmień hasło</a>
+							<a id="myAnchor" href="${pageContext.request.contextPath}/newpass/demo">Zmień hasło</a>
 						</p>
 						</div>
 					</div>
@@ -107,12 +103,10 @@
 	</div>
 
 	<jsp:include page="_footer.jsp" />
-
+<script>
+var myContextPath = `${pageContext.request.contextPath}`;
+document.getElementById("myAnchor").onclick = function() {myFunction3()};</script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/base.js">
+		src="${pageContext.request.contextPath}/js/base.js">		
 	</script>
-	<script>var myElement = document.getElementById("login");
-	console.log("To jest login: "+ myElement.innerHTML);
-	console.log("A co ty na yo");</script>
-</body>
-</html>
+

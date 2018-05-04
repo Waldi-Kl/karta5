@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.waldi.karta.dao.impl.UserInfoDAOImpl;
+
 
 @Controller
 public class MainController {
@@ -15,16 +17,10 @@ public class MainController {
    @RequestMapping(value = { "/", "/homepage"}, method = RequestMethod.GET)
    public String mainController(Model model) {
        model.addAttribute("title", "Welcome");
-       model.addAttribute("message", "Witamy na stronie powitalnej!");
+       model.addAttribute("message", "Wybierz rodzaj zadania.");
        return "homePage";
    }
-   
-   @RequestMapping(value = {"/newpass/{userLog}"}, method = RequestMethod.GET)
-   public String newPassword(Model model, @PathVariable("userLog") String userLog) {
-       model.addAttribute("title", "Karta wêdkarska");
-       model.addAttribute("message", userLog);
-       return "newPass";
-   }
+
 
  
    @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -36,7 +32,7 @@ public class MainController {
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(Model model) {
        model.addAttribute("title", "Logout");
-       model.addAttribute("message", "OK!");
+       model.addAttribute("message", "Do zobaczenia.");
        return "logoutSuccessfulPage";
    }
 
@@ -52,4 +48,6 @@ public class MainController {
        }
        return "403Page";
    }
+   
+
 }

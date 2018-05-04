@@ -17,5 +17,7 @@ public interface UserInfoDAO {
     public void updateUser(UserInfo user);
     public void updateRule(int rule, int id );
     public void deleteRule(int idUser);
+    public void passChange(int idUser, int idChange);
+    public void linkToPassChange(String userLog);
 
 }
