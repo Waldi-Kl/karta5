@@ -92,7 +92,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql3 = "delete from user_rule where user_id =?";
 		String sw1 = (String)getJdbcTemplate().queryForObject(
 				sql, new Object[] { idUser }, String.class);
-		if (sw1.equalsIgnoreCase("0")) {
+		if (sw1.equalsIgnoreCase("0")) {						// sta³a powinna byæ zapisana nie w formie liczbowej !!!!!
 			this.getJdbcTemplate().update(sql2,  idUser, rule);
 		} else {
 			if (rule==0) {
@@ -119,7 +119,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	@Override
 	public void linkToPassChange(String userLog) {
 		// TODO Auto-generated method stub
-		
+		 System.out.println("Wys³ano link do urzytkownika");
+		 
 	}
 
 }

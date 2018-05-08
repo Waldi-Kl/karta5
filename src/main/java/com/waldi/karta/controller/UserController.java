@@ -1,11 +1,6 @@
 package com.waldi.karta.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.security.Principal;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.waldi.karta.dao.UserInfoDAO;
-import com.waldi.karta.dao.impl.UserInfoDAOImpl;
 import com.waldi.model.UserInfo;
 
 @Controller
@@ -86,7 +80,7 @@ public class UserController {
 	public String deleteUser(Model model, UserInfo newUser) {
 
 		model.addAttribute("title", "UserInfo");
-		try {
+	try {
 			userInfoDAO.insertUser(newUser);
 		} catch (Exception e) {
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..()) UWAGA!!!!
@@ -95,7 +89,7 @@ public class UserController {
 			return "403Page";
 		}
 		List<UserInfo> list = userInfoDAO.getUsersList();
-		model.addAttribute("users", list);
+		model.addAttribute("users", list); 
 		return "userListPage";
 
 	}
@@ -146,37 +140,5 @@ public class UserController {
 		return "userListPage";
 	}
 	
-	  // ---------------- Brak podania loginu na stronie do logowania --------------
-	   @RequestMapping(value = {"/newpass"}, method = RequestMethod.GET)
-	   public String newPasswordErr(Model model) {
-	       model.addAttribute("title", "Login");
-	       model.addAttribute("message", "Podaj login.");
-	       return "loginPage";
-	   }
-	   // ---------------- Informacja o zmianie chas³¹ -------------- 
-	   @RequestMapping(value = {"/newpass/update"}, method = RequestMethod.POST)
-	   public String newPasswordUpdate(Model model) {
-		   
-	       model.addAttribute("title", "Karta wêdkarska");
-	       model.addAttribute("message", "Zmieniono has³o.");
-	       return "homePage";
-	   }
-	   // ---------------- Metoda generuj¹ca link do zmiany chas³a  --------------
-	   @RequestMapping(value = {"/newpass/{userLog}"}, method = RequestMethod.GET)
-	   public String newPassword(Model model, @PathVariable("userLog") String userLog) {
-		
-		   UserInfo myUser = userInfoDAO.getUserInfo(userLog);
-		   System.out.println(myUser.getEmail());
-		   userInfoDAO.linkToPassChange(userLog);
-	       model.addAttribute("title", "Karta wêdkarska");
-	       model.addAttribute("message", "Na twój e-mal przes³ano link do zmiany has³¹.");
-	       return "newPass";
-	   }
-	   // ---------------- Metoda pozwalaj¹ca zmieniæ has³o. Link z email  -------------- 
-	   @RequestMapping(value = {"/newpass/{userLog}/{idChange}"}, method = RequestMethod.GET)
-	   public String passChange(Model model, @PathVariable("userLog") String userLog, @PathVariable("idChange") int idChange) {
-		   
-	       model.addAttribute("title", "Karta wêdkarska");
-	       return "newPass2";
-	   }
+	  
 }

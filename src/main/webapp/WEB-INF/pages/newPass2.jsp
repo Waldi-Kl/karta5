@@ -106,7 +106,7 @@
 											onclick="document.getElementById('id03').style.display='none'"
 											class="w3-button w3-display-topright">&times;</span>
 											<h3>UWAGA!</h3>
-										<p>Sprawdz poprawwość wprowadzanych danych.</p>
+										<p>Sprawdz poprawość wprowadzanych danych.</p>
 									</div>
 								</div>
 							</div>

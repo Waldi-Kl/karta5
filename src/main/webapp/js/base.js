@@ -129,8 +129,7 @@
 		}
 		
 		// Walidacja formulaża reseru hasła
-		function validatePassChangeForm() {
-			console.log(5 + 6);
+		function validatePassChangeForm() {			
 			console.log("Uruchomił się check form");
 		    var x1 = document.forms["passupdate"]["newpassword"].value;
 		    var x2 = document.forms["passupdate"]["newpassword2"].value;
@@ -150,6 +149,7 @@
 		
 		function myFunction3() {
 			var myElement = document.getElementById("login");
+			console.log("Link: " + myContextPath);
 			var text = myElement.value;
 		    document.getElementById("myAnchor").href = myContextPath +"/newpass/"+ text;
 		}
