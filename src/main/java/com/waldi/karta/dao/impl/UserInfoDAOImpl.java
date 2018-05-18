@@ -48,7 +48,13 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql = UserInfoMapper.BASE_SQL + "where u.login = ?";
 		Object[] params = new Object[] { userLogin };
 		UserInfoMapper mapper = new UserInfoMapper();
-		UserInfo userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+		UserInfo userInfo = new UserInfo();
+		try {
+			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+		}catch (Exception e) {
+			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
+		}
+		
 		return userInfo;
 
 	}

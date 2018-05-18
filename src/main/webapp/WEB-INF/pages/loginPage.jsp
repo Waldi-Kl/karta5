@@ -77,8 +77,9 @@
 							action="${pageContext.request.contextPath}/j_spring_security_check"
 							method='POST'>
 							<p>
-								<label class="w3-text-white"><b>Login</b></label>
-								<input id="login" class="w3-input w3-border" type="text" name="userlogin" value=""/>
+								<label class="w3-text-white"><b>Login</b></label> <input
+									id="login" class="w3-input w3-border" type="text"
+									name="userlogin" value="" />
 							</p>
 							<p>
 								<label class="w3-text-white"><b>Pasword</b></label> <input
@@ -89,9 +90,10 @@
 							</p>
 						</form>
 						<div class="w3-container">
-						<p  class="w3-tiny">
-							<a id="myAnchor" href="${pageContext.request.contextPath}/newpass/demo">Zmień hasło</a>
-						</p>
+							<p class="w3-tiny">
+								<a id="myAnchor" href="${pageContext.request.contextPath}/403">Zmień
+									hasło</a>
+							</p>
 						</div>
 					</div>
 
@@ -103,10 +105,12 @@
 	</div>
 
 	<jsp:include page="_footer.jsp" />
-<script>
-var myContextPath = `${pageContext.request.contextPath}`;
-document.getElementById("myAnchor").onclick = function() {myFunction3()};</script>
+	<script>
+		var myContextPath = '${pageContext.request.contextPath}';
+		document.getElementById("myAnchor").onclick = function() {
+			myFunction3(myContextPath)
+		};
+	</script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">		
 	</script>
-

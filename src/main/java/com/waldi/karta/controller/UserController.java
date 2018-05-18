@@ -116,8 +116,8 @@ public class UserController {
 	@RequestMapping(value = { "/updaterole" }, method = RequestMethod.POST)
 	public String putUserRole(Model model, HttpServletRequest request, UserInfo myUser) {
 		model.addAttribute("title", "UserInfo");
-		System.out.println("Rola to :" + request.getParameter("option"));
-		System.out.println("userID to :" + request.getParameter("userID"));
+//		System.out.println("Rola to :" + request.getParameter("option"));
+//		System.out.println("userID to :" + request.getParameter("userID"));
 		int idUser = Integer.parseInt(request.getParameter("userID"));
 		String rule = request.getParameter("option");
 		if (rule!= null) {
@@ -130,7 +130,7 @@ public class UserController {
 			break;
 
 		default:
-			System.out.println("Default");
+//			System.out.println("Default");
 			userInfoDAO.updateRule(0, idUser);
 			break;
 		}

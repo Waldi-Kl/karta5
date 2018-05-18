@@ -147,9 +147,17 @@
 		    document.getElementById("demo").innerHTML = "Hello World";
 		}		
 		
-		function myFunction3() {
+		function myFunction3(myContextPath) {
 			var myElement = document.getElementById("login");
-			console.log("Link: " + myContextPath);
+			
 			var text = myElement.value;
-		    document.getElementById("myAnchor").href = myContextPath +"/newpass/"+ text;
+			var userLogin = document.getElementById("login").value;
+			
+			console.log("Link: " + myContextPath);
+			
+			console.log("Zmianna text : " + text);
+			
+			console.log("Zmianna userLogin : " + userLogin);
+			
+		    document.getElementById("myAnchor").href = myContextPath +"/newpass/"+ userLogin;
 		}
