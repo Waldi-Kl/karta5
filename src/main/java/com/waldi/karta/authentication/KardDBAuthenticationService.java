@@ -50,10 +50,23 @@ public class KardDBAuthenticationService implements UserDetailsService{
                 GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
                 grantList.add(authority);
             }
-        }        
-         
-        UserDetails userDetails = (UserDetails) new User(userInfo.getName(), //
-                userInfo.getPass(),grantList);
+        }       
+
+        UserDetails userDetails = null;
+//        if (!userInfo.equals(null)) {
+//    	   //UserDetails userDetails = (UserDetails) new User(userInfo.getName(), //
+//        	userDetails = (UserDetails) new User(userInfo.getName(), //
+//    			   userInfo.getPass(),grantList);    
+//        }
+        try{
+        	userDetails = (UserDetails) new User(userInfo.getName(), //
+     			   userInfo.getPass(),grantList);
+        } catch (Exception e){
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
+
+			System.out.println("To jest b³¹d przy nieistniej¹cym uzytkowniku");
+			//System.out.println("e."+e);
+		}
  
         return userDetails; // to przechodzi do zmiennej "userPrincipal"
     }
