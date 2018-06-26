@@ -1,19 +1,13 @@
 package com.waldi.karta.dao.impl;
 
-import java.io.BufferedReader;
-import java.lang.reflect.Field;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +23,9 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public UserInfoDAOImpl(DataSource dataSource) {
 		this.setDataSource(dataSource);
 	}
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;	// kodowanie has³a rypt-em
 
 	public List<String> getUserRoles(String userLogin) {
 		// String sql = "Select r.User_Role "//
@@ -55,7 +52,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
 			userInfo.setId(1);
 		}
-		
+
 		return userInfo;
 
 	}
@@ -72,8 +69,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	
 	public void insertUser(UserInfo user){		
 		String sql = "INSERT INTO user " +
-			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";		
-		this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),user.getPass(),user.getEmail());
+			"(surname, name , login , pass , email) VALUE (?,?,?,?,?)";
+		this.getJdbcTemplate().update(sql, user.getSurname(),user.getName(),user.getLogin(),passwordEncoder.encode(user.getPass()),user.getEmail()); // passwordEncoder.encode(user.getPass()) to kodowanie BCRYPT
 	}
 	
 	public void deleteUser(String userLogin) {

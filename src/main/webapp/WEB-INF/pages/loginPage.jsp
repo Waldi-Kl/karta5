@@ -95,6 +95,10 @@
 									hasło</a>
 							</p>
 						</div>
+						<div>
+							<a href="${pageContext.request.contextPath}/forgetPassword.html"
+								text="Cos">reset</a>
+						</div>
 					</div>
 
 				</div>

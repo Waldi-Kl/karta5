@@ -24,17 +24,16 @@ public class KardDBAuthenticationService implements UserDetailsService{
     
     public UserDetails loadUserByUsername(String userlogin) throws UsernameNotFoundException {
     	UserInfo userInfo=null;
-    	try{
+    	try{    		
     		userInfo = userInfoDAO.getUserInfo(userlogin);
+    		
 		} catch (Exception e){
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
-
+			// Ale prawdopodobnie nie pojawi siê tu b³¹d.
 			System.out.println("Posz³o: getUserIngo=NULL");
 		}
-        //UserInfo userInfo = userInfoDAO.getUserInfo(userlogin);
-        //System.out.println("User to :"+ userInfo.getSurname());
-      
-        if (userInfo == null) {
+
+        if (userInfo.getName() == null) {
         	System.out.println("loadUserByUsername Author... ?");
             throw new UsernameNotFoundException("User " + userlogin + " was not found in the database");
         }
@@ -53,19 +52,15 @@ public class KardDBAuthenticationService implements UserDetailsService{
         }       
 
         UserDetails userDetails = null;
-//        if (!userInfo.equals(null)) {
-//    	   //UserDetails userDetails = (UserDetails) new User(userInfo.getName(), //
-//        	userDetails = (UserDetails) new User(userInfo.getName(), //
-//    			   userInfo.getPass(),grantList);    
-//        }
+
         try{
         	userDetails = (UserDetails) new User(userInfo.getName(), //
      			   userInfo.getPass(),grantList);
         } catch (Exception e){
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
-
+        	// Tu b³¹d nie powinien siê pojawiæ
 			System.out.println("To jest b³¹d przy nieistniej¹cym uzytkowniku");
-			//System.out.println("e."+e);
+
 		}
  
         return userDetails; // to przechodzi do zmiennej "userPrincipal"
