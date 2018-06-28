@@ -29,7 +29,7 @@
 		<c:if test="${pageContext.request.userPrincipal.name != null}">
 			<a href="${pageContext.request.contextPath}/logout"
 				class="w3-bar-item w3-button w3-padding-16"><i
-				class="fa fa-sign-out"></i> Log out</a>
+				class="fa fa-sign-out"></i>Log out</a>
 		</c:if>
 	</div>
 	</header>
@@ -96,7 +96,7 @@
 							</p>
 						</div>
 						<div>
-							<a href="${pageContext.request.contextPath}/forgetPassword.html"
+							<a href="${pageContext.request.contextPath}/forgotPassword"
 								text="Cos">reset</a>
 						</div>
 					</div>

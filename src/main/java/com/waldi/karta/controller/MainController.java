@@ -34,6 +34,12 @@ public class MainController {
 	   model.addAttribute("title", "Login");
        return "loginPage";
    }
+   
+   @RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
+   public String forgotPassword(Model model ) {
+	   model.addAttribute("title", "Forgot");
+       return "forgotPassword";
+   }
  
    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
    public String logoutSuccessfulPage(Model model) {
