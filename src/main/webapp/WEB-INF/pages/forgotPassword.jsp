@@ -26,7 +26,7 @@
 			<div class="w3-col s9 w3-center">
 				<a href="${pageContext.request.contextPath}/"
 					class="w3-bar-item w3-button w3-padding-16"><i
-					class="fa fa-home"></i> Home</a> 
+					class="fa fa-home"></i> Home</a>
 
 			</div>
 
@@ -50,32 +50,16 @@
 
 	<div class="w3-cell-row">
 
-
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
-			<div>
-				<h1>Witaj w aplikacji Karta Wędkarska</h1>
-				<h3>${message}</h3>
+			<h1>reset</h1>
 
-				<!--  Tu jakaś treść  -->
-				<div class="w3-border">
+			<label>email</label> <input id="email"
+				name="email" type="email" value="" />
+			<button type="submit" onclick="resetPass()">reset</button>
 
-					<!--  Tutaj jakaś tresć -->
-					<h1>reset</h1>
-
-					<label>email</label> <input id="email" name="email" type="email"
-						value="" />
-					<button type="submit" onclick="resetPass()">reset</button>
-
-					<a href="@{/registration.html}"> registration </a> <a
-						href="@{/login}">login</a>
-
-					<script src="jquery.min.js"></script>
-
-					<a href="http://localhost:8080/Karta5/homepage">HOme</a>
-
-				</div>
-			</div>
+			<a href="@{/registration.html}"> registration </a> 
+			<a href="@{/login}">login</a>
 		</div>
 	</div>
 
@@ -89,6 +73,30 @@
 		src="${pageContext.request.contextPath}/js/base.js">
 		
 	</script>
+
+	<script src="jquery.min.js"></script>
+	<script javascript">
+var serverContext = [[@{/}]];
+function resetPass(){
+    var email = $("#email").val();
+    $.post(serverContext + "user/resetPassword",{email: email} ,
+      function(data){
+          window.location.href = 
+           serverContext + "login?message=" + data.message;
+    })
+    .fail(function(data) {
+        if(data.responseJSON.error.indexOf("MailError") > -1)
+        {
+            window.location.href = serverContext + "emailError.html";
+        }
+        else{
+            window.location.href = 
+              serverContext + "login?message=" + data.responseJSON.message;
+        }
+    });
+}
+ 
+</script>
 
 </body>
 </html>

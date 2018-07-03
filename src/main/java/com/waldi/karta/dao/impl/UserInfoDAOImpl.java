@@ -108,19 +108,16 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		
 	}
 
-	@Override
 	public void deleteRule(int idUser) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void passChange(int idUser, int idChange) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void linkToPassChange(String userLog) {
 		// TODO Auto-generated method stub
 		 System.out.println("Wys³ano link do urzytkownika");
