@@ -2,6 +2,7 @@ package com.waldi.karta.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.classmate.GenericType;
 import com.waldi.karta.dao.UserInfoDAO;
 import com.waldi.model.UserInfo;
 
@@ -80,7 +84,7 @@ public class UserController {
 	public String deleteUser(Model model, UserInfo newUser) {
 
 		model.addAttribute("title", "UserInfo");
-	try {
+		try {
 			userInfoDAO.insertUser(newUser);
 		} catch (Exception e) {
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..()) UWAGA!!!!
@@ -89,7 +93,7 @@ public class UserController {
 			return "403Page";
 		}
 		List<UserInfo> list = userInfoDAO.getUsersList();
-		model.addAttribute("users", list); 
+		model.addAttribute("users", list);
 		return "userListPage";
 
 	}
@@ -116,29 +120,42 @@ public class UserController {
 	@RequestMapping(value = { "/updaterole" }, method = RequestMethod.POST)
 	public String putUserRole(Model model, HttpServletRequest request, UserInfo myUser) {
 		model.addAttribute("title", "UserInfo");
-//		System.out.println("Rola to :" + request.getParameter("option"));
-//		System.out.println("userID to :" + request.getParameter("userID"));
+		// System.out.println("Rola to :" + request.getParameter("option"));
+		// System.out.println("userID to :" + request.getParameter("userID"));
 		int idUser = Integer.parseInt(request.getParameter("userID"));
 		String rule = request.getParameter("option");
-		if (rule!= null) {
-		switch (rule) {
-		case "ADMIN":
-			userInfoDAO.updateRule(1, idUser);
-			break;
-		case "USER":
-			userInfoDAO.updateRule(2, idUser);
-			break;
+		if (rule != null) {
+			switch (rule) {
+			case "ADMIN":
+				userInfoDAO.updateRule(1, idUser);
+				break;
+			case "USER":
+				userInfoDAO.updateRule(2, idUser);
+				break;
 
-		default:
-//			System.out.println("Default");
-			userInfoDAO.updateRule(0, idUser);
-			break;
+			default:
+				// System.out.println("Default");
+				userInfoDAO.updateRule(0, idUser);
+				break;
+			}
 		}
-		}		
 		List<UserInfo> list = userInfoDAO.getUsersList();
 		model.addAttribute("users", list);
 		return "userListPage";
 	}
-	
-	  
+
+	@RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)
+	@ResponseBody
+	public GenericResponse resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) throws Exception {
+		String user = userEmail;
+		if (user == null) {
+			throw new Exception("BLAD");
+		}
+		String token = UUID.randomUUID().toString();
+		System.out.println("Posz³o GenericResponse");
+		//userService.createPasswordResetTokenForUser(user, token);
+		//mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
+		return new GenericResponse("message.resetPasswordEmail");
+	}
+
 }

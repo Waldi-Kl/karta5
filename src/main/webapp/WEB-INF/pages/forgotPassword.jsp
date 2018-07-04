@@ -58,8 +58,6 @@
 				name="email" type="email" value="" />
 			<button type="submit" onclick="resetPass()">reset</button>
 
-			<a href="@{/registration.html}"> registration </a> 
-			<a href="@{/login}">login</a>
 		</div>
 	</div>
 
@@ -68,30 +66,44 @@
 	<jsp:include page="_footer.jsp" />
 
 	<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+	
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>  <!-- Aby zadziałał Jquery musi być ten zapis -->
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">
 		
 	</script>
 
-	<script src="jquery.min.js"></script>
-	<script javascript">
-var serverContext = [[@{/}]];
+	<!-- <script src="jquery.min.js"></script> -->
+	<script type = "text/javascript" language = "javascript">
+var serverContext = '[[@{/}]]';
 function resetPass(){
-    var email = $("#email").val();
-    $.post(serverContext + "user/resetPassword",{email: email} ,
+	console.log("Poszedł resetPass().Zzmienna serverContext: " + serverContext);
+	var email = $("#email").val();
+	
+	var text = '{ "employees" : [' +
+	'{ "firstName":"John" , "lastName":"Doe" },' +
+	'{ "firstName":"Anna" , "lastName":"Smith" },' +
+	'{ "firstName":"Peter" , "lastName":"Jones" } ]}'; 
+	var data= JSON.parse(text);
+	console.log("email to: " + email);
+	console.log("data to: " + data);
+    $.post(serverContext + "resetPassword",{email: email} ,
       function(data){
           window.location.href = 
            serverContext + "login?message=" + data.message;
+          console.log(" window.location.href to: " +  window.location.href);
     })
     .fail(function(data) {
         if(data.responseJSON.error.indexOf("MailError") > -1)
         {
             window.location.href = serverContext + "emailError.html";
+            console.log("FAUL  window.location.href to: " +  window.location.href);
         }
         else{
             window.location.href = 
               serverContext + "login?message=" + data.responseJSON.message;
+            console.log("ELSE window.location.href to: " +  window.location.href);
         }
     });
 }
