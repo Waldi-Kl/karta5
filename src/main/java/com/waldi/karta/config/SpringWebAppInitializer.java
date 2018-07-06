@@ -10,6 +10,11 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class SpringWebAppInitializer implements WebApplicationInitializer {
+	
+	/*
+	 * To jest klasa inicjuj¹ca ca³y servlet - 
+	 * 
+	 */
 
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// TODO Auto-generated method stub

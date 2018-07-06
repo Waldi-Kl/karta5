@@ -1,6 +1,7 @@
 package com.waldi.karta.dao.impl;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -50,7 +51,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		}catch (Exception e) {
 			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
-			userInfo.setId(1);
+			//userInfo.setId(1);
+			userInfo.setId(0);
 		}
 
 		return userInfo;
@@ -122,6 +124,16 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		// TODO Auto-generated method stub
 		 System.out.println("Wys³ano link do urzytkownika");
 		 
+	}
+
+	@Override
+	public void setLoginDate(int idUser) {
+		// TODO Auto-generated method stub
+		Date today = new Date();
+		 System.out.println("Tu powinna zapisaæ siê data logowania");
+			String sql = "UPDATE user " +
+			"SET last_login = ? WHERE id = ?";
+			this.getJdbcTemplate().update(sql, today ,idUser);
 	}
 
 }

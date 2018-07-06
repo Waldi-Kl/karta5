@@ -49,6 +49,7 @@ public class UserController {
 			// powinny tworzyæ siê logi z b³êdami.
 			model.addAttribute("title", "UserInfo");
 			model.addAttribute("message", "Nie powodzenie podczas po³¹czenia do bazy!");
+			System.out.println("Blad: "+e);
 			return "403Page";
 		}
 
@@ -144,18 +145,18 @@ public class UserController {
 		return "userListPage";
 	}
 
-	@RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)
-	@ResponseBody
-	public GenericResponse resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) throws Exception {
-		String user = userEmail;
-		if (user == null) {
-			throw new Exception("BLAD");
-		}
-		String token = UUID.randomUUID().toString();
-		System.out.println("Posz³o GenericResponse");
-		//userService.createPasswordResetTokenForUser(user, token);
-		//mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
-		return new GenericResponse("message.resetPasswordEmail");
-	}
+//	@RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)
+//	@ResponseBody
+//	public GenericResponse resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) throws Exception {
+//		String user = userEmail;
+//		if (user == null) {
+//			throw new Exception("BLAD");
+//		}
+//		String token = UUID.randomUUID().toString();
+//		System.out.println("Posz³o GenericResponse");
+//		//userService.createPasswordResetTokenForUser(user, token);
+//		//mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
+//		return new GenericResponse("message.resetPasswordEmail");
+//	}
 
 }

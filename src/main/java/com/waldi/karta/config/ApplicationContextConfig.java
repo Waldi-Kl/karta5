@@ -41,6 +41,9 @@ public class ApplicationContextConfig {
 	      return rb;
 	  }
 	 
+	  /*
+	   * 
+	   */
 	  @Bean(name = "viewResolver")
 	  public InternalResourceViewResolver getViewResolver() {
 	      InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -49,6 +52,9 @@ public class ApplicationContextConfig {
 	      return viewResolver;
 	  }
 	 
+	  /*
+	   * 
+	   */
 	  @Bean(name = "dataSource")
 	  public DataSource getDataSource() {
 	      DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -65,6 +71,9 @@ public class ApplicationContextConfig {
 	  }
 	 
 	  // Transaction Manager
+	  /*
+	   * 
+	   */
 	  @Autowired
 	  @Bean(name = "transactionManager")
 	  public DataSourceTransactionManager getTransactionManager(DataSource dataSource) {

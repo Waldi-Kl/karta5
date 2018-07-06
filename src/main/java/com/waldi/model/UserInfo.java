@@ -1,9 +1,9 @@
 package com.waldi.model;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Date;
 
 public class UserInfo {
 
@@ -13,6 +13,9 @@ public class UserInfo {
 	private String login;
 	private String pass;
 	private String email;
+	private boolean enabled;
+	private Date lastLogin;
+	private String resetToken;
 
 	public UserInfo() {
 
@@ -91,6 +94,30 @@ public class UserInfo {
 
 	public void setEmail(String email) {
 		this.email = email.trim();
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
 	}
 
 }

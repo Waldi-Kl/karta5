@@ -45,7 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
  
-    //.out.println("WebSecurityConfig i http: " + http.authorizeRequests().and().formLogin().usernameParameter("username"));
         http.csrf().disable();
  
         // The pages does not require login
