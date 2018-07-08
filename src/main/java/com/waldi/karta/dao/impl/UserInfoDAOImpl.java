@@ -26,7 +26,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	}
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;	// kodowanie has³a rypt-em
+	private PasswordEncoder passwordEncoder;	// kodowanie hasÂ³a rypt-em
 
 	public List<String> getUserRoles(String userLogin) {
 		// String sql = "Select r.User_Role "//
@@ -50,7 +50,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		}catch (Exception e) {
-			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
+			System.out.println("BÅ‚Ä…d z getUserInfo to: "+ e.toString());
 			//userInfo.setId(1);
 			userInfo.setId(0);
 		}
@@ -98,7 +98,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		String sql3 = "delete from user_rule where user_id =?";
 		String sw1 = (String)getJdbcTemplate().queryForObject(
 				sql, new Object[] { idUser }, String.class);
-		if (sw1.equalsIgnoreCase("0")) {						// sta³a powinna byæ zapisana nie w formie liczbowej !!!!!
+		if (sw1.equalsIgnoreCase("0")) {						// staÂ³a powinna byÃ¦ zapisana nie w formie liczbowej !!!!!
 			this.getJdbcTemplate().update(sql2,  idUser, rule);
 		} else {
 			if (rule==0) {
@@ -122,7 +122,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
 	public void linkToPassChange(String userLog) {
 		// TODO Auto-generated method stub
-		 System.out.println("Wys³ano link do urzytkownika");
+		 System.out.println("WysÂ³ano link do urzytkownika");
 		 
 	}
 
@@ -130,7 +130,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void setLoginDate(int idUser) {
 		// TODO Auto-generated method stub
 		Date today = new Date();
-		 System.out.println("Tu powinna zapisaæ siê data logowania");
+		 System.out.println("Tu powinna zapisaÃ¦ siÃª data logowania");
 			String sql = "UPDATE user " +
 			"SET last_login = ? WHERE id = ?";
 			this.getJdbcTemplate().update(sql, today ,idUser);
