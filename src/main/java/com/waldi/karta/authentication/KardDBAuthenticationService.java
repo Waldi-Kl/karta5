@@ -30,9 +30,9 @@ public class KardDBAuthenticationService implements UserDetailsService{
     		System.out.println("Jest user: " + userInfo.getId());
     		
 		} catch (Exception e){
-			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
-			// Ale prawdopodobnie nie pojawi siê tu b³¹d.
-			System.out.println("Posz³o: getUserIngo=NULL");
+			// Tu powinno znalesc sie obsÂ³uga wielu bÂ³ÃªdÃ³w jdbc (e.get..())  UWAGA!!!! powinny tworzyÃ¦ siÃª logi z bÂ³Ãªdami.
+			// Ale prawdopodobnie nie pojawi siÃª tu bÂ³Â¹d.
+			System.out.println("PoszÂ³o: getUserIngo=NULL");
 		}
 
         if (userInfo.getName() == null) {
@@ -63,9 +63,9 @@ public class KardDBAuthenticationService implements UserDetailsService{
         	userDetails = (UserDetails) new User(userInfo.getName(), //
      			   userInfo.getPass(),grantList);
         } catch (Exception e){
-			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
-        	// Tu b³¹d nie powinien siê pojawiæ
-			System.out.println("To jest b³¹d przy nieistniej¹cym uzytkowniku");
+			// Tu powinno znalesc sie obsÂ³uga wielu bÂ³ÃªdÃ³w jdbc (e.get..())  UWAGA!!!! powinny tworzyÃ¦ siÃª logi z bÂ³Ãªdami.
+        	// Tu bÂ³Â¹d nie powinien siÃª pojawiÃ¦
+			System.out.println("To jest bÅ‚Ä…d przy nieistniejÂ¹cym uzytkowniku");
 
 		}
  
