@@ -122,7 +122,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
 	public void linkToPassChange(String userLog) {
 		// TODO Auto-generated method stub
-		 System.out.println("WysÂ³ano link do urzytkownika");
+		 System.out.println("Wys³ano link do urzytkownika");
 		 
 	}
 
@@ -130,7 +130,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void setLoginDate(int idUser) {
 		// TODO Auto-generated method stub
 		Date today = new Date();
-		 System.out.println("Tu powinna zapisaÃ¦ siÃª data logowania");
+		// System.out.println("Tu powinna zapisaæ siê data logowania");
 			String sql = "UPDATE user " +
 			"SET last_login = ? WHERE id = ?";
 			this.getJdbcTemplate().update(sql, today ,idUser);

@@ -23,16 +23,16 @@ public class KardDBAuthenticationService implements UserDetailsService{
  
     
     public UserDetails loadUserByUsername(String userlogin) throws UsernameNotFoundException {
-    	System.out.println("Logowanie");
+    	//System.out.println("Logowanie");
     	UserInfo userInfo=null;
     	try{    		
     		userInfo = userInfoDAO.getUserInfo(userlogin);
-    		System.out.println("Jest user: " + userInfo.getId());
+    		//System.out.println("Jest user: " + userInfo.getId());
     		
 		} catch (Exception e){
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
 			// Ale prawdopodobnie nie pojawi siê tu b³¹d.
-			System.out.println("Posz³o: getUserIngo=NULL");
+			System.out.println("Posz�o: getUserIngo=NULL");
 		}
 
         if (userInfo.getName() == null) {
@@ -40,7 +40,7 @@ public class KardDBAuthenticationService implements UserDetailsService{
             throw new UsernameNotFoundException("User " + userlogin + " was not found in the database");
         }
         else {
-        	System.out.println("Poprawny user: " + userInfo.getId());
+        	//System.out.println("Poprawny user: " + userInfo.getId());
         	userInfoDAO.setLoginDate(userInfo.getId());
         }
          
@@ -65,7 +65,7 @@ public class KardDBAuthenticationService implements UserDetailsService{
         } catch (Exception e){
 			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..())  UWAGA!!!! powinny tworzyæ siê logi z b³êdami.
         	// Tu b³¹d nie powinien siê pojawiæ
-			System.out.println("To jest błąd przy nieistniej¹cym uzytkowniku");
+			//System.out.println("To jest b��d przy nieistniej�cym uzytkowniku");
 
 		}
  

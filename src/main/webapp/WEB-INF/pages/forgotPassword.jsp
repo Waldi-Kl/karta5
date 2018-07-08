@@ -51,12 +51,13 @@
 	<div class="w3-cell-row">
 
 		<!-- Część centralna -->
-		<div class="w3-container w3-cell ">
-			<h1>reset</h1>
+		<div class="w3-container w3-cell w3-border">
+			<h1>Zmiana hasła.</h1>
 
 			<label>email</label> <input id="email"
 				name="email" type="email" value="" />
-			<button type="submit" onclick="resetPass()">reset</button>
+			<!-- <button type="submit" onclick="resetPass()">reset</button> -->
+			<button class="w3-button w3-black w3-tiny" type="submit" onclick="resetPass()">Reset</button>
 
 		</div>
 	</div>
