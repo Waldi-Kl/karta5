@@ -57,7 +57,7 @@
 			<label>email</label> <input id="email"
 				name="email" type="email" value="" />
 			<!-- <button type="submit" onclick="resetPass()">reset</button> -->
-			<button class="w3-button w3-black w3-tiny" type="submit" onclick="resetPass()">Reset</button>
+			<button class="w3-button w3-black" type="submit" onclick="resetPass()">Reset</button>
 
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 		
 	</script>
 
-	<!-- <script src="jquery.min.js"></script> -->
+	<!-- <script src="jquery.min.js"></script>
 	<script type = "text/javascript" language = "javascript">
 var serverContext = '[[@{/}]]';
 function resetPass(){
@@ -107,9 +107,9 @@ function resetPass(){
             console.log("ELSE window.location.href to: " +  window.location.href);
         }
     });
-}
+} 
  
-</script>
+</script>-->
 
 </body>
 </html>
