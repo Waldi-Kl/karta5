@@ -3,6 +3,7 @@ package com.waldi.karta.dao.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -17,6 +18,7 @@ import com.waldi.karta.mapper.UserInfoMapper;
 import com.waldi.model.UserInfo;
 
 @Service
+//@Service("userService")
 @Transactional
 public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
@@ -50,7 +52,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		}catch (Exception e) {
-			System.out.println("BÅ‚Ä…d z getUserInfo to: "+ e.toString());
+			System.out.println("Blad z getUserInfo to: "+ e.toString());
 			//userInfo.setId(1);
 			userInfo.setId(0);
 		}
@@ -134,6 +136,40 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 			String sql = "UPDATE user " +
 			"SET last_login = ? WHERE id = ?";
 			this.getJdbcTemplate().update(sql, today ,idUser);
+	}
+
+	@Override
+	public UserInfo findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		String sql = UserInfoMapper.BASE_SQL + "where u.email = ?";
+		
+		UserInfoMapper mapper = new UserInfoMapper();
+		UserInfo userInfo = new UserInfo();
+		try {
+			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
+		}catch (Exception e) {
+			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
+			//userInfo.setId(1);
+			userInfo.setId(0);
+		}
+
+		return userInfo;
+		
+		//return userRepository.findByEmail(email);
+	}
+
+	@Override
+	public UserInfo findUserByResetToken(String resetToken) {
+		// TODO Auto-generated method stub
+		//return userRepository.findByResetToken(resetToken);
+		UserInfo userInfo = new UserInfo();
+		return userInfo;
+	}
+
+	@Override
+	public void save(UserInfo user) {
+		// TODO Auto-generated method stub
+		//userRepository.save(user);
 	}
 
 }

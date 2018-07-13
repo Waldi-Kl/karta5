@@ -163,10 +163,12 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency> <groupId>javax.servlet.jsp</groupId> 
-		<artifactId>javax.servlet.jsp-api</artifactId> 
-			<version>2.3.2-b02</version> <scope>provided</scope> 
-			</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.2-b02</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -174,12 +176,18 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-core</artifactId>
-    <version>5.2.2.Final</version>
-</dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.2.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 
 	</dependencies>
 	<build>
