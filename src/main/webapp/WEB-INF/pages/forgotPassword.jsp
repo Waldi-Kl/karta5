@@ -53,7 +53,7 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell w3-border">
 			<h1>Zmiana hasła.</h1>
-
+<p>To jest wiadomość: ${message}</p>
 			<label>email</label> <input id="email"
 				name="email" type="email" value="" />
 			<!-- <button type="submit" onclick="resetPass()">reset</button> -->

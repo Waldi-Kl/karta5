@@ -26,5 +26,4 @@ public interface UserInfoDAO {
 	public UserInfo findUserByResetToken(String resetToken);
 	public void save(UserInfo user);
 
-
 }
