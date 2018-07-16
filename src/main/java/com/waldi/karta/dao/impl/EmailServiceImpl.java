@@ -1,17 +1,16 @@
 package com.waldi.karta.dao.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import com.waldi.karta.dao.EmailService;
 
-//@Service("emailService")
-@Service
-public class EmailServiceImpl {
+
+@Service("userService")
+public class EmailServiceImpl implements EmailService {
 	
-	@Autowired
+	//@Autowired
 	private JavaMailSender mailSender;
 
 	@Async

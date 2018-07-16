@@ -40,6 +40,7 @@ public class PassworldController {
 	// Display forgotPassword page
 	@RequestMapping(value = "/forgot", method = RequestMethod.GET)
 	public ModelAndView displayForgotPasswordPage() {
+		System.out.println("PasswordC run");
 		ModelAndView model = new ModelAndView("forgotPassword");
 		model.addObject("message", "OK.");
 		return model;
@@ -141,6 +142,7 @@ public class PassworldController {
     // Going to reset page without a token redirects to login page
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ModelAndView handleMissingParams(MissingServletRequestParameterException ex) {
+		System.out.println("Uruchomil siê EXCeption!!");
 		return new ModelAndView("redirect:login");
 	}
 }

@@ -98,12 +98,14 @@
 						<div>
 							<a href="${pageContext.request.contextPath}/forgotPassword"
 								text="Cos">Reset hasła</a>
-						</div>-->		
-						<div class="w3-container" >
+						</div>  -->	
+						<div class="w3-container" >  
 						<!--	<a href="${pageContext.request.contextPath}/forgotPassword" -->	
-						<a href="${pageContext.request.contextPath}/forgot"
-								class="w3-small" >Reset hasła</a>
-						</div>
+						<a href="${pageContext.request.contextPath}/userInfo/forgot/"
+								 class="w3-small" >Reset hasła</a>
+								
+								<!-- class="w3-small" >Reset hasła</a> -->
+								<p></p>						</div>
 					</div>
 
 				</div>
