@@ -63,6 +63,7 @@
 										<!--	<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
 										<p>Info z kontrolera:${message}</p>-->
 										<p>Sprawdź wprowadzane dane.</p>
+										
 									</div>
 								</div>
 							</div>

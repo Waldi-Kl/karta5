@@ -43,28 +43,31 @@ public class PassworldController {
 		System.out.println("PasswordC run");
 		ModelAndView model = new ModelAndView("forgotPassword");
 		model.addObject("message", "OK.");
+		model.addObject("title", "UserInfo");
 		return model;
 		//return new ModelAndView("forgotPassword");
     }
-   /* 
+  
     // Process form submission from forgotPassword page
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
-
+		System.out.println("Poszed³ POST w forgot");
 		// Lookup user in database by e-mail
 		//Optional<UserInfoDAO> optional = userInfoDAO.findUserByEmail(userEmail);
 		UserInfo user = new UserInfo();
 		user = userInfoDAO.findUserByEmail(userEmail);
+		modelAndView.addObject("title", "UserInfo");
 		if (user==null) {
+			System.out.println("null na usser");
 			modelAndView.addObject("errorMessage", "We didn't find an account for that e-mail address.");
 		} else {
-			
+		
 			// Generate random 36-character string token for reset password 
 			//UserInfoDAO user = optional.get();
 			user.setResetToken(UUID.randomUUID().toString());
-
+			System.out.println("User Rest Token: "+ user.getResetToken());
 			// Save token to database
-			UserInfo.saveUser(user);
+			userInfoDAO.save(user);
 
 			String appUrl = request.getScheme() + "://" + request.getServerName();
 			
@@ -82,10 +85,12 @@ public class PassworldController {
 			modelAndView.addObject("successMessage", "A password reset link has been sent to " + userEmail);
 		}
 
+		System.out.println("Powinien uruchomiæ ksiê - forgotPassword");
 		modelAndView.setViewName("forgotPassword");
 		return modelAndView;
 
 	}
+	 /* 
 
 	// Display form to reset password
 	@RequestMapping(value = "/reset", method = RequestMethod.GET)

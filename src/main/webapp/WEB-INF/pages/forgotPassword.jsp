@@ -30,7 +30,7 @@
 
 			</div>
 
-			<!-- 	------------------------------------------ login info  -------------------------  -->
+			<!-- 	------------------------------------------ login info  -------------------------  
 			<div class="w3-col s3 w3-center">
 				<div class="w3-container w3-cell w3-cell-middle">
 					<p>Login: ${pageContext.request.userPrincipal.name}</p>
@@ -41,8 +41,9 @@
 							class="w3-button w3-padding-16"><i class="fa fa-sign-out"></i>
 							Log out</a>
 					</c:if>
-				</div>
-			</div>
+				</div> 
+			</div> -->
+			
 		</div>
 	</div>
 
@@ -51,14 +52,22 @@
 	<div class="w3-cell-row">
 
 		<!-- Część centralna -->
-		<div class="w3-container w3-cell w3-border">
-			<h1>Zmiana hasła.</h1>
-<p>To jest wiadomość: ${message}</p>
-			<label>email</label> <input id="email"
-				name="email" type="email" value="" />
-			<!-- <button type="submit" onclick="resetPass()">reset</button> -->
-			<button class="w3-button w3-black" type="submit" onclick="resetPass()">Reset</button>
 
+		<div class="w3-container w3-cell w3-border">
+		<p>${errorMessage}</p>
+		<h1>Zmiana hasła.</h1>
+			<form class="w3-container" name='forgot'
+				action="${pageContext.request.contextPath}//userInfo/forgot/"
+				method='POST'>
+				<p>
+					<label class="w3-text"><b>E-mail</b></label> <input id="email"
+						class="w3-input w3-border" type="email" name="email" value="" />
+				</p>
+
+				<p>
+					<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
+				</p>
+			</form>
 		</div>
 	</div>
 
@@ -67,8 +76,9 @@
 	<jsp:include page="_footer.jsp" />
 
 	<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
-	
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>  <!-- Aby zadziałał Jquery musi być ten zapis -->
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<!-- Aby zadziałał Jquery musi być ten zapis -->
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/base.js">

@@ -15,7 +15,8 @@ public class EmailServiceImpl implements EmailService {
 
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
-		mailSender.send(email);							// nale¿y dodaæ dependency : <groupId>javax.mail</groupId> <artifactId>mail</artifactId><version>1.4.7</version>
+		//mailSender.send(email);							// nale¿y dodaæ dependency : <groupId>javax.mail</groupId> <artifactId>mail</artifactId><version>1.4.7</version>
+		System.out.println("Problem z email - powstaje NULL");
 	}
 
 }

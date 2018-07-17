@@ -141,18 +141,18 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	@Override
 	public UserInfo findUserByEmail(String email) {
 		// TODO Auto-generated method stub
-		String sql = UserInfoMapper.BASE_SQL + "where u.email = ?";
 		
+		String sql = UserInfoMapper.BASE_SQL + "where u.email = '"+email+"'";
+
 		UserInfoMapper mapper = new UserInfoMapper();
 		UserInfo userInfo = new UserInfo();
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
 		}catch (Exception e) {
-			System.out.println("B³¹d z getUserInfo to: "+ e.toString());
+			///System.out.println("B³¹d z findUserByEmail to: "+ e.toString());
 			//userInfo.setId(1);
-			userInfo.setId(0);
+			userInfo= null;
 		}
-
 		return userInfo;
 		
 		//return userRepository.findByEmail(email);
@@ -170,6 +170,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void save(UserInfo user) {
 		// TODO Auto-generated method stub
 		//userRepository.save(user);
+		System.out.println("Uruchomi³ sie save w UsetInfoDao");
 	}
 
 
