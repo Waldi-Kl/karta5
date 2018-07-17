@@ -55,6 +55,7 @@
 
 		<div class="w3-container w3-cell w3-border">
 		<p>${errorMessage}</p>
+		<p>${successMessage}</p>
 		<h1>Zmiana hasła.</h1>
 			<form class="w3-container" name='forgot'
 				action="${pageContext.request.contextPath}//userInfo/forgot/"

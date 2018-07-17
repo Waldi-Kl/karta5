@@ -170,8 +170,10 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void save(UserInfo user) {
 		// TODO Auto-generated method stub
 		//userRepository.save(user);
-		System.out.println("Uruchomi³ sie save w UsetInfoDao");
+		//System.out.println("Id USER= :"+ user.getId());
+		String sql = "UPDATE user " +
+		"SET reset_token = ? WHERE id = ?";
+		this.getJdbcTemplate().update(sql, user.getResetToken(), user.getId());
+		//System.out.println("Uruchomi³ sie save w UsetInfoDao");
 	}
-
-
 }

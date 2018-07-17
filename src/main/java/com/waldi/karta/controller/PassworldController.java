@@ -1,6 +1,5 @@
 package com.waldi.karta.controller;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.waldi.karta.dao.EmailService;
 import com.waldi.karta.dao.UserInfoDAO;
+import com.waldi.karta.dao.impl.EmailServiceImpl;
 import com.waldi.model.UserInfo;
 
 @Controller
@@ -27,20 +27,21 @@ public class PassworldController {
 	@Autowired
 	private UserInfoDAO userInfoDAO;
 	
+	
 //	@Autowired
 //	private UserService userService;
 
-	@Autowired
+	//@Autowired
 	private EmailService emailService;
+	private EmailServiceImpl emailService2;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;	// kodowanie hasÂ³a rypt-em
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;	// kodowanie hasÂ³a rypt-em
 
 	
 	// Display forgotPassword page
 	@RequestMapping(value = "/forgot", method = RequestMethod.GET)
 	public ModelAndView displayForgotPasswordPage() {
-		System.out.println("PasswordC run");
 		ModelAndView model = new ModelAndView("forgotPassword");
 		model.addObject("message", "OK.");
 		model.addObject("title", "UserInfo");
@@ -52,20 +53,18 @@ public class PassworldController {
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
 		System.out.println("Poszed³ POST w forgot");
-		// Lookup user in database by e-mail
-		//Optional<UserInfoDAO> optional = userInfoDAO.findUserByEmail(userEmail);
 		UserInfo user = new UserInfo();
 		user = userInfoDAO.findUserByEmail(userEmail);
 		modelAndView.addObject("title", "UserInfo");
 		if (user==null) {
-			System.out.println("null na usser");
-			modelAndView.addObject("errorMessage", "We didn't find an account for that e-mail address.");
+			//System.out.println("null na usser");
+			modelAndView.addObject("errorMessage", "Nie znaleziono konta przypisaneg do podanego agresu.");
 		} else {
 		
 			// Generate random 36-character string token for reset password 
 			//UserInfoDAO user = optional.get();
 			user.setResetToken(UUID.randomUUID().toString());
-			System.out.println("User Rest Token: "+ user.getResetToken());
+			//System.out.println("User Rest Token: "+ user.getResetToken());
 			// Save token to database
 			userInfoDAO.save(user);
 
@@ -74,75 +73,27 @@ public class PassworldController {
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 			passwordResetEmail.setFrom("support@demo.com");
+			System.out.println("Muj email: "+ user.getEmail());
 			passwordResetEmail.setTo(user.getEmail());
 			passwordResetEmail.setSubject("Password Reset Request");
 			passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
+			emailService2 = new EmailServiceImpl();
+			System.out.println("emailService: "+ emailService2.toString());
+			//emailService.sendEmail(passwordResetEmail);
 			
-			emailService.sendEmail(passwordResetEmail);
+			emailService2.sendEmail(passwordResetEmail);
 
 			// Add success message to view
-			modelAndView.addObject("successMessage", "A password reset link has been sent to " + userEmail);
+			modelAndView.addObject("successMessage", "Link do zmiany has³a zosta³ przes³any na adres: " + userEmail);
 		}
 
-		System.out.println("Powinien uruchomiæ ksiê - forgotPassword");
+		//System.out.println("Powinien uruchomiæ ksiê - forgotPassword");
 		modelAndView.setViewName("forgotPassword");
 		return modelAndView;
 
 	}
-	 /* 
 
-	// Display form to reset password
-	@RequestMapping(value = "/reset", method = RequestMethod.GET)
-	public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
-		
-		Optional<User> user = userService.findUserByResetToken(token);
-
-		if (user.isPresent()) { // Token found in DB
-			modelAndView.addObject("resetToken", token);
-		} else { // Token not found in DB
-			modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link.");
-		}
-
-		modelAndView.setViewName("resetPassword");
-		return modelAndView;
-	}
-
-	// Process reset password form
-	@RequestMapping(value = "/reset", method = RequestMethod.POST)
-	public ModelAndView setNewPassword(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
-
-		// Find the user associated with the reset token
-		Optional<User> user = userService.findUserByResetToken(requestParams.get("token"));
-
-		// This should always be non-null but we check just in case
-		if (user.isPresent()) {
-			
-			User resetUser = user.get(); 
-            
-			// Set new password    
-            resetUser.setPassword(bCryptPasswordEncoder.encode(requestParams.get("password")));
-            
-			// Set the reset token to null so it cannot be used again
-			resetUser.setResetToken(null);
-
-			// Save user
-			userService.saveUser(resetUser);
-
-			// In order to set a model attribute on a redirect, we must use
-			// RedirectAttributes
-			redir.addFlashAttribute("successMessage", "You have successfully reset your password.  You may now login.");
-
-			modelAndView.setViewName("redirect:login");
-			return modelAndView;
-			
-		} else {
-			modelAndView.addObject("errorMessage", "Oops!  This is an invalid password reset link.");
-			modelAndView.setViewName("resetPassword");	
-		}
-		
-		return modelAndView;
-   }*/
    
     // Going to reset page without a token redirects to login page
 	@ExceptionHandler(MissingServletRequestParameterException.class)
