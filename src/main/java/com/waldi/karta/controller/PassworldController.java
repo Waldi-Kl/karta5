@@ -72,11 +72,11 @@ public class PassworldController {
 			
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setFrom("support@demo.com");
-			System.out.println("Muj email: "+ user.getEmail());
+			passwordResetEmail.setFrom("support@localhost");
+			System.out.println("Mój email: "+ user.getEmail());
 			passwordResetEmail.setTo(user.getEmail());
-			passwordResetEmail.setSubject("Password Reset Request");
-			passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
+			passwordResetEmail.setSubject("Restart has³¹");
+			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij lunk poni¿ej:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
 			emailService2 = new EmailServiceImpl();
 			System.out.println("emailService: "+ emailService2.toString());

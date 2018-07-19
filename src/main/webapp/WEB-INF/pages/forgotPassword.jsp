@@ -58,7 +58,7 @@
 		<p>${successMessage}</p>
 		<h1>Zmiana hasła.</h1>
 			<form class="w3-container" name='forgot'
-				action="${pageContext.request.contextPath}//userInfo/forgot/"
+				action="${pageContext.request.contextPath}/userInfo/forgot/"
 				method='POST'>
 				<p>
 					<label class="w3-text"><b>E-mail</b></label> <input id="email"

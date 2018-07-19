@@ -30,8 +30,9 @@ public class ApplicationContextConfig {
 	 
 	 // @Autowired
 	  private UserInfoDAO userInfoDAO;
+
 	  
-	 
+	  
 	  @Bean
 	  public ResourceBundleMessageSource messageSource() {
 	      ResourceBundleMessageSource rb = new ResourceBundleMessageSource();
