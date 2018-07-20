@@ -6,6 +6,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ import com.waldi.model.UserInfo;
 @Controller
 @RequestMapping(value = "/forgotpassword")
 public class PassworldController {
+	
+	@Autowired
+	  private Environment env;
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
@@ -49,13 +54,13 @@ private EmailServiceImpl emailService2;
     // Process form submission from forgotPassword page
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
-		//System.out.println("Poszed³ POST w forgot");
+		System.out.println("Poszed³ POST w forgot");
 		UserInfo user = new UserInfo();
 		user = userInfoDAO.findUserByEmail(userEmail);
 		modelAndView.addObject("title", "UserInfo");
 		if (user==null) {
 			//System.out.println("null na usser");
-			modelAndView.addObject("errorMessage", "Nie znaleziono konta przypisaneg do podanego agresu.");
+			modelAndView.addObject("errorMessage", "Nie znaleziono konta przypisaneg do podanego adresu.");
 		} else {
 		
 			// Generate random 36-character string token for reset password 
@@ -65,12 +70,12 @@ private EmailServiceImpl emailService2;
 			// Save token to database
 			userInfoDAO.save(user);
 
-			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/Karta5/forgotpassword";
+			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/karta5/forgotpassword";
 			
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 			passwordResetEmail.setFrom("wsparcie@localhost"); // qwer
-			//System.out.println("Mój email: "+ user.getEmail());
+			System.out.println("Nazwa wsparcia: "+ env.getProperty("ds.name"));
 			passwordResetEmail.setTo(user.getEmail());
 			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij lunk poni¿ej:\n" + appUrl
@@ -94,7 +99,7 @@ private EmailServiceImpl emailService2;
 	// Display form to reset password
 		@RequestMapping(value = "/reset", method = RequestMethod.GET)
 		public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
-			
+			System.out.println("User poszedl GET");
 			UserInfo user = new UserInfo();
 			user = userInfoDAO.findUserByResetToken(token);
 			modelAndView.addObject("title", "Reset");
@@ -113,13 +118,14 @@ private EmailServiceImpl emailService2;
 		@RequestMapping(value = "/reset", method = RequestMethod.POST)
 		public ModelAndView setNewPassword(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
 
-			//System.out.println("User Rest Token: "+ requestParams.get("resetToken"));
+			System.out.println("User Rest Token POST: "+ requestParams.get("resetToken"));
 			// Find the user associated with the reset token
 			UserInfo user = new UserInfo();
 			user = userInfoDAO.findUserByResetToken(requestParams.get("resetToken"));
 			
 			// This should always be non-null but we check just in case
 			if (user != null) {
+				System.out.println("Ustawiam nowe haslo");
 				// Set new password    
 				user.setPass(requestParams.get("password"));
 	            
