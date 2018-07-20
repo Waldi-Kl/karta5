@@ -18,7 +18,6 @@ import com.waldi.karta.mapper.UserInfoMapper;
 import com.waldi.model.UserInfo;
 
 @Service
-//@Service("userService")
 @Transactional
 public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
@@ -162,7 +161,18 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public UserInfo findUserByResetToken(String resetToken) {
 		// TODO Auto-generated method stub
 		//return userRepository.findByResetToken(resetToken);
+		
+		String sql = UserInfoMapper.BASE_SQL + "where u.reset_token = '"+ resetToken +"'";
+		UserInfoMapper mapper = new UserInfoMapper();
 		UserInfo userInfo = new UserInfo();
+		try {
+			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
+		}catch (Exception e) {
+			///System.out.println("B³¹d z findUserByEmail to: "+ e.toString());
+			//userInfo.setId(1);
+			userInfo= null;
+		}
+		
 		return userInfo;
 	}
 
@@ -172,8 +182,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		//userRepository.save(user);
 		//System.out.println("Id USER= :"+ user.getId());
 		String sql = "UPDATE user " +
-		"SET reset_token = ? WHERE id = ?";
-		this.getJdbcTemplate().update(sql, user.getResetToken(), user.getId());
+		"SET pass = ?, reset_token = ? WHERE id = ?";
+		this.getJdbcTemplate().update(sql, passwordEncoder.encode(user.getPass()), user.getResetToken(), user.getId());
 		//System.out.println("Uruchomi³ sie save w UsetInfoDao");
 	}
 }

@@ -90,19 +90,10 @@
 								<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
 							</p>
 						</form>
- 				<!--	<div class="w3-container">
-							<p class="w3-tiny">
-								<a id="myAnchor" href="${pageContext.request.contextPath}/403">Zmień
-									hasło</a>
-							</p>
-						</div>  
-						<div>
-							<a href="${pageContext.request.contextPath}/forgotPassword"
-								text="Cos">Reset hasła</a>
-						</div>  -->	
+
 						<div class="w3-container" >  
-						<!--	<a href="${pageContext.request.contextPath}/forgotPassword" -->	
-						<a href="${pageContext.request.contextPath}/userInfo/forgot/"
+						
+						<a href="${pageContext.request.contextPath}/forgotpassword/forgot/"
 								 class="w3-small" >Reset hasła</a>
 								
 								<!-- class="w3-small" >Reset hasła</a> -->

@@ -41,30 +41,60 @@
 
 		<div class="w3-container w3-cell w3-border">
 			<p>${errorMessage}</p>
-			<p>${successMessage}</p>
+			<p id="demo"></p>
 			<h1>Zmiana hasła.</h1>
-			
-				<p>Podaj Twój email:</p>			
-				<form class="w3-container" name='forgot'
-					action="${pageContext.request.contextPath}/forgotpassword/forgot/"
+
+				<form class="w3-container" name='forgot' 
+					action="${pageContext.request.contextPath}/forgotpassword/forgot/" onsubmit="return validateForm()"
 					method='POST'>
 					<p>
-						<label class="w3-text"><b>E-mail</b></label> <input id="email"
-							class="w3-input w3-border" type="email" name="email" value="" />
+						<label for="psw" class="w3-text"><b>Hasło</b></label> 
+						<input
+							class="w3-input w3-border" type="password" id="psw" name="psw"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							title="Musi zawierać conajmniej jedną cyfrę, jedną małą i diżą litere , i co najmniej 8 znaków"
+							required>
 					</p>
-
 					<p>
-						<button class="w3-btn w3-theme" name="submit" type="submit">Wyślij</button>
+						<label for="psw2" class="w3-text"><b>Powtórz Hasło</b></label> <input
+							class="w3-input w3-border" type="password" id="psw2" name="psw2"
+							required>
 					</p>
-				</form>
+					<p>
+						<input class="w3-btn w3-theme" onclick="passwordCheck" type="submit" value="Potwierdź">
+					</p>
 
+				</form>
 		</div>
+
 
 	</div>
 
 
+
+
 	<jsp:include page="_footer.jsp" />
 
+
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/base.js">
+		
+	</script>
+
+	<script>
+		
+	function validateForm() {
+		
+	    var x = document.forms["forgot"]["psw"].value;
+	    var x2 = document.forms["forgot"]["psw2"].value;
+	    console.log("Zmianna text : " + x2);
+	    if (x!=x2) {
+	        alert("Hadła nie są jednakowe.");
+	        return false;
+	    }
+	    console.log("Coś nie tak");
+	}
+	</script>
 
 
 </body>

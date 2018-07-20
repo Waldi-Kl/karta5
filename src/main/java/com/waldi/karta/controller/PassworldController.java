@@ -1,5 +1,6 @@
 package com.waldi.karta.controller;
 
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.waldi.karta.dao.EmailService;
 import com.waldi.karta.dao.UserInfoDAO;
@@ -21,19 +23,14 @@ import com.waldi.karta.dao.impl.EmailServiceImpl;
 import com.waldi.model.UserInfo;
 
 @Controller
-@RequestMapping(value = "/userInfo")
+@RequestMapping(value = "/forgotpassword")
 public class PassworldController {
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
 	
 	
-//	@Autowired
-//	private UserService userService;
-
-	//@Autowired
-	private EmailService emailService;
-	private EmailServiceImpl emailService2;
+private EmailServiceImpl emailService2;
 	
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;	// kodowanie hasÂ³a rypt-em
@@ -52,7 +49,7 @@ public class PassworldController {
     // Process form submission from forgotPassword page
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
-		System.out.println("Poszed³ POST w forgot");
+		//System.out.println("Poszed³ POST w forgot");
 		UserInfo user = new UserInfo();
 		user = userInfoDAO.findUserByEmail(userEmail);
 		modelAndView.addObject("title", "UserInfo");
@@ -68,14 +65,14 @@ public class PassworldController {
 			// Save token to database
 			userInfoDAO.save(user);
 
-			String appUrl = request.getScheme() + "://" + request.getServerName();
+			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/Karta5/forgotpassword";
 			
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setFrom("support@localhost");
-			System.out.println("Mój email: "+ user.getEmail());
+			passwordResetEmail.setFrom("wsparcie@localhost"); // qwer
+			//System.out.println("Mój email: "+ user.getEmail());
 			passwordResetEmail.setTo(user.getEmail());
-			passwordResetEmail.setSubject("Restart has³¹");
+			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij lunk poni¿ej:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
 			emailService2 = new EmailServiceImpl();
@@ -94,11 +91,62 @@ public class PassworldController {
 
 	}
 
+	// Display form to reset password
+		@RequestMapping(value = "/reset", method = RequestMethod.GET)
+		public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
+			
+			UserInfo user = new UserInfo();
+			user = userInfoDAO.findUserByResetToken(token);
+			modelAndView.addObject("title", "Reset");
+			if (user!=null) { // Token found in DB
+				modelAndView.addObject("resetToken", token);
+				modelAndView.setViewName("resetPassword");
+				
+			} else { // Token not found in DB
+				modelAndView.addObject("errorMessage", "Oops!  Niepoprawny reset link.");
+				modelAndView.setViewName("forgotPassword");
+			}			
+			return modelAndView;
+		}
+		
+		// Process reset password form
+		@RequestMapping(value = "/reset", method = RequestMethod.POST)
+		public ModelAndView setNewPassword(ModelAndView modelAndView, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
+
+			//System.out.println("User Rest Token: "+ requestParams.get("resetToken"));
+			// Find the user associated with the reset token
+			UserInfo user = new UserInfo();
+			user = userInfoDAO.findUserByResetToken(requestParams.get("resetToken"));
+			
+			// This should always be non-null but we check just in case
+			if (user != null) {
+				// Set new password    
+				user.setPass(requestParams.get("password"));
+	            
+				// Set the reset token to null so it cannot be used again
+				user.setResetToken(null);
+
+				// Save user
+				userInfoDAO.save(user);
+
+				// In order to set a model attribute on a redirect, we must use
+				// RedirectAttributes
+
+				modelAndView.setViewName("loginPage");
+				return modelAndView;
+				
+			} else {
+				modelAndView.addObject("errorMessage", "Oops!  Niew³aœciwy reset link.");
+				modelAndView.setViewName("resetPassword");	
+			}
+			
+			return modelAndView;
+	   }
    
     // Going to reset page without a token redirects to login page
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public ModelAndView handleMissingParams(MissingServletRequestParameterException ex) {
 		System.out.println("Uruchomil siê EXCeption!!");
-		return new ModelAndView("redirect:login");
+		return new ModelAndView("loginPage");
 	}
 }
