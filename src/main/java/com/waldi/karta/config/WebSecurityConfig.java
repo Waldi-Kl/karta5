@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.waldi.karta.authentication.KardDBAuthenticationService;
  
 @Configuration
-// @EnableWebSecurity = @EnableWebMVCSecurity + Extra features
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  

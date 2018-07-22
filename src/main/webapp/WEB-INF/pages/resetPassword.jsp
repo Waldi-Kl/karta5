@@ -44,13 +44,13 @@
 			<p id="demo"></p>
 			<h1>Zmiana hasła.</h1>
 
-				<form class="w3-container" name='forgot' 
-					action="${pageContext.request.contextPath}/forgotpassword/forgot/" onsubmit="return validateForm()"
+				<form class="w3-container" name='reset' 
+					action="${pageContext.request.contextPath}/forgotpassword/reset/" onsubmit="return validateForm()"
 					method='POST'>
 					<p>
 						<label for="psw" class="w3-text"><b>Hasło</b></label> 
 						<input
-							class="w3-input w3-border" type="password" id="psw" name="psw"
+							class="w3-input w3-border" type="password" id="psw" name="password"
 							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							title="Musi zawierać conajmniej jedną cyfrę, jedną małą i diżą litere , i co najmniej 8 znaków"
 							required>
@@ -60,6 +60,7 @@
 							class="w3-input w3-border" type="password" id="psw2" name="psw2"
 							required>
 					</p>
+					<input type="hidden" name="resetToken" value="${resetToken}">
 					<p>
 						<input class="w3-btn w3-theme" onclick="passwordCheck" type="submit" value="Potwierdź">
 					</p>
@@ -89,7 +90,7 @@
 	    var x2 = document.forms["forgot"]["psw2"].value;
 	    console.log("Zmianna text : " + x2);
 	    if (x!=x2) {
-	        alert("Hadła nie są jednakowe.");
+	        alert("Hasła nie są jednakowe.");
 	        return false;
 	    }
 	    console.log("Coś nie tak");

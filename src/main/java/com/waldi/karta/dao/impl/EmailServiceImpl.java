@@ -11,15 +11,10 @@ import com.waldi.karta.dao.EmailService;
 
 @Service("userService")
 public class EmailServiceImpl implements EmailService {
-	
-	//@Autowired
-	//private JavaMailSender mailSender;
 
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
 		JavaMailSender mailSender = new JavaMailSenderImpl();
-		System.out.println("Uruchomi³ siê - sendEmail");
-		System.out.println("email to :" + mailSender.toString());
 		try {mailSender.send(email);							// nale¿y dodaæ dependency : <groupId>javax.mail</groupId> <artifactId>mail</artifactId><version>1.4.7</version>
 		
 		}catch (Exception e) {

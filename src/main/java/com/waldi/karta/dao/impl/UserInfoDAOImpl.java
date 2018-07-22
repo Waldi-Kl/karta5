@@ -3,8 +3,6 @@ package com.waldi.karta.dao.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +49,6 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		}catch (Exception e) {
-			System.out.println("Blad z getUserInfo to: "+ e.toString());
 			//userInfo.setId(1);
 			userInfo.setId(0);
 		}
@@ -148,8 +145,6 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
 		}catch (Exception e) {
-			///System.out.println("B³¹d z findUserByEmail to: "+ e.toString());
-			//userInfo.setId(1);
 			userInfo= null;
 		}
 		return userInfo;
@@ -166,9 +161,9 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		UserInfoMapper mapper = new UserInfoMapper();
 		UserInfo userInfo = new UserInfo();
 		try {
+			
 			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
 		}catch (Exception e) {
-			///System.out.println("B³¹d z findUserByEmail to: "+ e.toString());
 			//userInfo.setId(1);
 			userInfo= null;
 		}
@@ -180,10 +175,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void save(UserInfo user) {
 		// TODO Auto-generated method stub
 		//userRepository.save(user);
-		//System.out.println("Id USER= :"+ user.getId());
 		String sql = "UPDATE user " +
 		"SET pass = ?, reset_token = ? WHERE id = ?";
 		this.getJdbcTemplate().update(sql, passwordEncoder.encode(user.getPass()), user.getResetToken(), user.getId());
-		//System.out.println("Uruchomi³ sie save w UsetInfoDao");
-	}
+		}
 }

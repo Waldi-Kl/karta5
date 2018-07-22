@@ -3,6 +3,7 @@ package com.waldi.karta.controller;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,15 @@ public class MainController {
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
+	
+	@Autowired
+	  private Environment env;
 
    @RequestMapping(value = { "/", "/homepage"}, method = RequestMethod.GET)
    public String mainController(Model model) {
        model.addAttribute("title", "Welcome");
        model.addAttribute("message", "Wybierz rodzaj zadania.");
+      // System.out.println("Info z aplication.prop :"+ env.getProperty("service.name"));
        return "homePage";
    }
 
@@ -71,7 +76,7 @@ public class MainController {
    // ---------------- Informacja o zmianie chas³¹ -------------- 
    @RequestMapping(value = {"/newpass/update"}, method = RequestMethod.POST)
    public String newPasswordUpdate(Model model) {
-	   System.out.println("uruchomi³ sie updat");
+	  // System.out.println("uruchomi³ sie updat");
        model.addAttribute("title", "Karta wêdkarska");
        model.addAttribute("message", "Zmieniono has³o.");
        return "homePage";
@@ -80,7 +85,7 @@ public class MainController {
    @RequestMapping(value = {"/newpass/{userLog}"}, method = RequestMethod.GET)
    public String newPassword(Model model, @PathVariable("userLog") String userLog) {
 	
-	   UserInfo myUser = userInfoDAO.getUserInfo(userLog);
+	 // UserInfo myUser = userInfoDAO.getUserInfo(userLog);
 	  
 	   userInfoDAO.linkToPassChange(userLog);
        model.addAttribute("title", "Karta wêdkarska");
