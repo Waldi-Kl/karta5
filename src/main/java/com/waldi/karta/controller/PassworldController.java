@@ -3,6 +3,7 @@ package com.waldi.karta.controller;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class PassworldController {
 	
 	@Autowired
 	private UserInfoDAO userInfoDAO;
+	
+	@Autowired
+    private ServletContext servletContext;
 	
 	
 private EmailServiceImpl emailService2;
@@ -64,8 +68,9 @@ private EmailServiceImpl emailService2;
 			user.setPass("123");
 			userInfoDAO.save(user);
 
-			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/karta5/forgotpassword";
-			
+			//String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/karta5/forgotpassword";
+			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080" + servletContext.getContextPath() +"/forgotpassword";
+			//System.out.println("A to jest zmienna: " + servletContext.getContextPath());
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
 			//passwordResetEmail.setFrom("wsparcie@localhost"); // qwer
@@ -73,11 +78,9 @@ private EmailServiceImpl emailService2;
 			//System.out.println("Aplik res: "+ env.getProperty("service.name"));
 			passwordResetEmail.setTo(user.getEmail());
 			passwordResetEmail.setSubject("Restart has³a");
-			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij lunk poni¿ej:\n" + appUrl
+			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij link poni¿ej:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
 			emailService2 = new EmailServiceImpl();
-			//System.out.println("emailService: "+ emailService2.toString());
-			//emailService.sendEmail(passwordResetEmail);
 			
 			emailService2.sendEmail(passwordResetEmail);
 
@@ -95,10 +98,12 @@ private EmailServiceImpl emailService2;
 		@RequestMapping(value = "/reset", method = RequestMethod.GET)
 		public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
 			UserInfo user = new UserInfo();
+			//System.out.println("To jest ResrToken: " + token);
 			user = userInfoDAO.findUserByResetToken(token);
 			modelAndView.addObject("title", "Reset");
-			System.out.println("Co jest User: " + user.getId());
-			if (user.getId()!=0) { // Token found in DB !!! UWAGA by³o user != null
+			//if (user!=null)System.out.println("Co jest User: " + user.getId());
+			//if (user!=null || user.getId()!=0) { // Token found in DB !!! UWAGA by³o user != null
+			if (user!=null) { // Token found in DB !!! UWAGA by³o user.getId()!=0
 				modelAndView.addObject("resetToken", token);
 				modelAndView.setViewName("resetPassword");	
 			} else { // Token not found in DB

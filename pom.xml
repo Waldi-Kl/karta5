@@ -5,7 +5,8 @@
 	<artifactId>Karta5</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Karta5 Maven Webapp</name>
+	<!-- <name>Karta5 Maven Webapp</name> -->
+	<name>karta5</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

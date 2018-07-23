@@ -42,7 +42,7 @@
 		<div class="w3-container w3-cell w3-border">
 			<p>${errorMessage}</p>
 			<p>${successMessage}</p>
-			<h1>Zmiana hasła.</h1>
+			<h2>Zmiana hasła.</h2>
 			
 				<p>Podaj Twój email:</p>			
 				<form class="w3-container" name='forgot'

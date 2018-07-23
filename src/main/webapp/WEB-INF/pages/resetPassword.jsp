@@ -41,37 +41,49 @@
 
 		<div class="w3-container w3-cell w3-border">
 			<p>${errorMessage}</p>
-			<p id="demo"></p>
+
 			<h1>Zmiana hasła.</h1>
 
-				<form class="w3-container" name='reset' 
-					action="${pageContext.request.contextPath}/forgotpassword/reset/" onsubmit="return validateForm()"
-					method='POST'>
-					<p>
-						<label for="psw" class="w3-text"><b>Hasło</b></label> 
-						<input
-							class="w3-input w3-border" type="password" id="psw" name="password"
-							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-							title="Musi zawierać conajmniej jedną cyfrę, jedną małą i diżą litere , i co najmniej 8 znaków"
-							required>
-					</p>
-					<p>
-						<label for="psw2" class="w3-text"><b>Powtórz Hasło</b></label> <input
-							class="w3-input w3-border" type="password" id="psw2" name="psw2"
-							required>
-					</p>
-					<input type="hidden" name="resetToken" value="${resetToken}">
-					<p>
-						<input class="w3-btn w3-theme" onclick="passwordCheck" type="submit" value="Potwierdź">
-					</p>
+			<form class="w3-container" name='resetForm'
+				action="${pageContext.request.contextPath}/forgotpassword/reset/"
+				onsubmit="return validateResetForm()" method='POST'>
+				<p>
+					<label for="psw" class="w3-text"><b>Hasło</b></label> <input
+						class="w3-input w3-border" type="password" id="psw"
+						name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Musi zawierać conajmniej jedną cyfrę, jedną małą i dużą litere , i co najmniej 8 znaków"
+						required>
+				</p>
+				<p>
+					<label for="psw2" class="w3-text"><b>Powtórz Hasło</b></label> <input
+						class="w3-input w3-border" type="password" id="psw2"
+						name="password2" required>
+				</p>
+				<input type="hidden" name="resetToken" value="${resetToken}">
+				<p>
+					<input class="w3-btn w3-theme" onclick="passwordCheck"
+						type="submit" value="Potwierdź">
+				</p>
 
-				</form>
+			</form>
 		</div>
 
 
 	</div>
 
+	<div id="error1" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container w3-red">
+				<span
+					onclick="document.getElementById('error1').style.display='none'"
+					class="w3-button w3-display-topright">&times;</span>
+				<!-- <div class="w3-panel w3-red"> -->
+				<h3>Podane hasła nie są jednakowe.</h3>
+				<p>Wprowadź jednakowe hasła.</p>
 
+			</div>
+		</div>
+	</div>
 
 
 	<jsp:include page="_footer.jsp" />
@@ -82,19 +94,9 @@
 		
 	</script>
 
-	<script>
-		
-	function validateForm() {
-		
-	    var x = document.forms["forgot"]["psw"].value;
-	    var x2 = document.forms["forgot"]["psw2"].value;
-	    console.log("Zmianna text : " + x2);
-	    if (x!=x2) {
-	        alert("Hasła nie są jednakowe.");
-	        return false;
-	    }
-	    console.log("Coś nie tak");
-	}
+	<script> 
+	<!--	Tu była funkcja validateResetForm -->
+
 	</script>
 
 

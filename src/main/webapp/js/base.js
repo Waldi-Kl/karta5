@@ -161,3 +161,15 @@
 			
 		    document.getElementById("myAnchor").href = myContextPath +"/newpass/"+ userLogin;
 		}
+		
+		
+		function validateResetForm() {
+			
+		    var x = document.forms["resetForm"]["password"].value;
+		    var x2 = document.forms["resetForm"]["password2"].value;
+		    console.log("Zmianna text : " + x2);
+		    if (x!==x2) {
+		    	document.getElementById('error1').style.display='block';
+		        return false;
+		    }
+		}
