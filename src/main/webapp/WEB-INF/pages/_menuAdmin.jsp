@@ -16,9 +16,7 @@
 				<!--<a href="${pageContext.request.contextPath}/admin"
 					class="w3-bar-item w3-button w3-padding-16">Administracja</a>-->
 				<div class="w3-dropdown-hover">
-					<button class="w3-button w3-padding-16 w3-theme">
-						Użytkownik <i class="fa fa-caret-down"></i>
-					</button>
+					<button class="w3-button w3-padding-16 w3-theme"><i class="fa fa-group"></i> Użytkownik</button>
 					<div class="w3-dropdown-content w3-card-4 w3-bar-block">
 						<a href="${pageContext.request.contextPath}/userInfo/list"
 							class="w3-bar-item w3-button">Lista</a>
@@ -31,7 +29,7 @@
 		<!-- 	------------------------------------------ login info  -------------------------  -->
 			<div class="w3-col s3 w3-center">
 				<div class="w3-container w3-cell w3-cell-middle">
-				<p>Login: ${pageContext.request.userPrincipal.name}</p>							  
+				<p><i class="fa fa-user"></i> Login: ${pageContext.request.userPrincipal.name}</p>							  
 				</div>
 				<div class="w3-container w3-cell">
 					<c:if test="${pageContext.request.userPrincipal.name != null}">

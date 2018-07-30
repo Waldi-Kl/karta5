@@ -14,6 +14,8 @@
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/w3_theme.css"
 	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <title>${title}</title>
 </head>
@@ -63,7 +65,7 @@
 										<!--	<p>Reason:${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
 										<p>Info z kontrolera:${message}</p>-->
 										<p>Sprawdź wprowadzane dane.</p>
-										
+
 									</div>
 								</div>
 							</div>
@@ -91,13 +93,15 @@
 							</p>
 						</form>
 
-						<div class="w3-container" >  
-						
-						<a href="${pageContext.request.contextPath}/forgotpassword/forgot/"
-								 class="w3-small" >Reset hasła</a>
-								
-								<!-- class="w3-small" >Reset hasła</a> -->
-								<p></p>						</div>
+						<div class="w3-container">
+
+							<a
+								href="${pageContext.request.contextPath}/forgotpassword/forgot/"
+								class="w3-small">Reset hasła</a>
+
+							<!-- class="w3-small" >Reset hasła</a> -->
+							<p></p>
+						</div>
 					</div>
 
 				</div>
