@@ -37,9 +37,6 @@ public class PassworldController {
 	
 	
 private EmailServiceImpl emailService2;
-	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;	// kodowanie hasÂ³a rypt-em
 
 	
 	// Display forgotPassword page. Wyœwetl stronê do wprowadzenia email
@@ -49,7 +46,6 @@ private EmailServiceImpl emailService2;
 		model.addObject("message", "OK.");
 		model.addObject("title", "UserInfo");
 		return model;
-		//return new ModelAndView("forgotPassword");
     }
   
     // Process form submission from forgotPassword page. Po przes³¹niu maila. POST z formularza
@@ -68,14 +64,10 @@ private EmailServiceImpl emailService2;
 			user.setPass("123");
 			userInfoDAO.save(user);
 
-			//String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080/karta5/forgotpassword";
 			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080" + servletContext.getContextPath() +"/forgotpassword";
-			//System.out.println("A to jest zmienna: " + servletContext.getContextPath());
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			//passwordResetEmail.setFrom("wsparcie@localhost"); // qwer
-			passwordResetEmail.setFrom(env.getProperty("service.name"));
-			//System.out.println("Aplik res: "+ env.getProperty("service.name"));
+			passwordResetEmail.setFrom(env.getProperty("service.name"));	// service.name jest pobierane z pliku konfiguracyjnego config.propertis
 			passwordResetEmail.setTo(user.getEmail());
 			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij link poni¿ej:\n" + appUrl
@@ -98,11 +90,8 @@ private EmailServiceImpl emailService2;
 		@RequestMapping(value = "/reset", method = RequestMethod.GET)
 		public ModelAndView displayResetPasswordPage(ModelAndView modelAndView, @RequestParam("token") String token) {
 			UserInfo user = new UserInfo();
-			//System.out.println("To jest ResrToken: " + token);
 			user = userInfoDAO.findUserByResetToken(token);
 			modelAndView.addObject("title", "Reset");
-			//if (user!=null)System.out.println("Co jest User: " + user.getId());
-			//if (user!=null || user.getId()!=0) { // Token found in DB !!! UWAGA by³o user != null
 			if (user!=null) { // Token found in DB !!! UWAGA by³o user.getId()!=0
 				modelAndView.addObject("resetToken", token);
 				modelAndView.setViewName("resetPassword");	
