@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <title>${title}</title>
+<style>
+
+</style>
 </head>
 <body>
 
@@ -28,7 +31,9 @@
 			<div>
 				<h1>Witaj w aplikacji Karta Wędkarska</h1>
 				<h3>${message}</h3>
+<img src="${pageContext.request.contextPath}/images/logo.png" />
 
+        
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">
 
