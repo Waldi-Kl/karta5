@@ -31,9 +31,7 @@
 			<div>
 				<h1>Witaj w aplikacji Karta Wędkarska</h1>
 				<h3>${message}</h3>
-<img src="${pageContext.request.contextPath}/images/logo.png" />
 
-        
 				<!--  Tu jakaś treść  -->
 				<div class="w3-border">
 
