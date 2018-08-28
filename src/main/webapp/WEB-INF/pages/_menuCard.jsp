@@ -26,8 +26,12 @@
 							class="w3-bar-item w3-button">Strażnikow</a>
 
 					</div>
+					
 
 				</div>
+				<a href="${pageContext.request.contextPath}/statistics/"
+					class="w3-bar-item w3-button w3-padding-16"><i
+					class="fa fa-bar-chart"></i> Statystyki</a>
 
 			</div>
 			<!-- 	------------------------------------------ login info  -------------------------  -->

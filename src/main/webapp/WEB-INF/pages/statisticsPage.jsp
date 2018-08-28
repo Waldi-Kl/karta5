@@ -18,14 +18,14 @@
 <title>${title}</title>
 </head>
 <body>
-<jsp:include page="_menu.jsp" />
+<jsp:include page="_menuCard.jsp" />
 <div class="w3-cell-row">
 
 <h2>Statystyki</h2>
 <p>Wiadomość: ${message}</p>
 </div>
 
-
+<p>Cos tam</p>
 <jsp:include page="_footer.jsp" />
 </body>
 </html>

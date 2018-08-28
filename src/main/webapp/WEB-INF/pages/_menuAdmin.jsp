@@ -24,6 +24,9 @@
 							class="w3-bar-item w3-button">Zarządzaj</a> -->
 					</div>
 				</div>
+				<a
+					href="${pageContext.request.contextPath}/admin/settingsPages"
+					class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-cogs"></i> Ustawienia</a>
 
 			</div>
 		<!-- 	------------------------------------------ login info  -------------------------  -->

@@ -19,7 +19,7 @@
 <title>${title}</title>
 </head>
 <body>
-	<jsp:include page="_menuUser.jsp" />
+	<jsp:include page="_menuAdmin.jsp" />
 
 
 

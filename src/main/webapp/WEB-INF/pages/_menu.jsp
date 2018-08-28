@@ -14,9 +14,10 @@
 					class="fa fa-home"></i> Home</a> <a
 					href="${pageContext.request.contextPath}/admin"
 					class="w3-bar-item w3-button w3-padding-16"><i
-					class="fa fa-bank"></i> Administracja</a> <a
+					class="fa fa-bank"></i> Administracja</a>
+			<!-- <a
 					href="${pageContext.request.contextPath}/admin/settingsPages"
-					class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-cogs"></i> Ustawienia</a>
+					class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-cogs"></i> Ustawienia</a> -->	
 
 				<div class="w3-dropdown-hover">
 					<button class="w3-button w3-padding-16 w3-theme">
