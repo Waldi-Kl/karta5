@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/cardInfo")
 public class CardController {
+	
+//	public CardController() {
+//		System.out.println("Uruchomi³ sie CardController");
+//	}
 
 	 @RequestMapping(value = "/fishing",method = RequestMethod.GET)
 	   public String fishingInfo(Model model, Principal principal) {
@@ -31,4 +35,6 @@ public class CardController {
 	       model.addAttribute("title", "£owiectwo");
 	       return "kartaS";
 	   }
+	 
+
 }

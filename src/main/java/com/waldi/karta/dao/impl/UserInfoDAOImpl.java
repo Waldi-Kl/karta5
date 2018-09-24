@@ -3,8 +3,6 @@ package com.waldi.karta.dao.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,6 @@ import com.waldi.karta.mapper.UserInfoMapper;
 import com.waldi.model.UserInfo;
 
 @Service
-//@Service("userService")
 @Transactional
 public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
@@ -52,7 +49,6 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
 		}catch (Exception e) {
-			System.out.println("Blad z getUserInfo to: "+ e.toString());
 			//userInfo.setId(1);
 			userInfo.setId(0);
 		}
@@ -149,8 +145,6 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 		try {
 			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
 		}catch (Exception e) {
-			///System.out.println("B³¹d z findUserByEmail to: "+ e.toString());
-			//userInfo.setId(1);
 			userInfo= null;
 		}
 		return userInfo;
@@ -162,7 +156,18 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public UserInfo findUserByResetToken(String resetToken) {
 		// TODO Auto-generated method stub
 		//return userRepository.findByResetToken(resetToken);
+		
+		String sql = UserInfoMapper.BASE_SQL + "where u.reset_token = '"+ resetToken +"'";
+		UserInfoMapper mapper = new UserInfoMapper();
 		UserInfo userInfo = new UserInfo();
+		try {
+			
+			userInfo = this.getJdbcTemplate().queryForObject(sql, mapper);
+		}catch (Exception e) {
+			//userInfo.setId(1);
+			userInfo= null;
+		}
+		
 		return userInfo;
 	}
 
@@ -170,10 +175,8 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 	public void save(UserInfo user) {
 		// TODO Auto-generated method stub
 		//userRepository.save(user);
-		//System.out.println("Id USER= :"+ user.getId());
 		String sql = "UPDATE user " +
-		"SET reset_token = ? WHERE id = ?";
-		this.getJdbcTemplate().update(sql, user.getResetToken(), user.getId());
-		//System.out.println("Uruchomi³ sie save w UsetInfoDao");
-	}
+		"SET pass = ?, reset_token = ? WHERE id = ?";
+		this.getJdbcTemplate().update(sql, passwordEncoder.encode(user.getPass()), user.getResetToken(), user.getId());
+		}
 }

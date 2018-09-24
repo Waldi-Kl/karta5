@@ -11,13 +11,7 @@
 			<div class="w3-col s9 w3-center">
 				<a href="${pageContext.request.contextPath}/"
 					class="w3-bar-item w3-button w3-padding-16"><i
-					class="fa fa-home"></i> Home</a> <a
-					href="${pageContext.request.contextPath}/admin"
-					class="w3-bar-item w3-button w3-padding-16"><i
-					class="fa fa-bank"></i> Administracja</a>
-			<!-- <a
-					href="${pageContext.request.contextPath}/admin/settingsPages"
-					class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-cogs"></i> Ustawienia</a> -->	
+					class="fa fa-home"></i> Home</a>
 
 				<div class="w3-dropdown-hover">
 					<button class="w3-button w3-padding-16 w3-theme">
@@ -32,11 +26,13 @@
 							class="w3-bar-item w3-button">Strażnikow</a>
 
 					</div>
+					
 
 				</div>
 				<a href="${pageContext.request.contextPath}/statistics/"
 					class="w3-bar-item w3-button w3-padding-16"><i
 					class="fa fa-bar-chart"></i> Statystyki</a>
+
 			</div>
 			<!-- 	------------------------------------------ login info  -------------------------  -->
 			<div class="w3-col s3 w3-center">
@@ -56,4 +52,3 @@
 			</div>
 		</div>
 </header>
-

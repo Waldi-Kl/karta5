@@ -28,10 +28,8 @@
 
 		<div class="w3-border">
 			<div class="w3-bar w3-black">
-				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16"
-					onclick="openTabs(event,'List')">Lista</button>
-				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16"
-					onclick="openTabs(event,'AddUser')">Dodaj</button>
+				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16" onclick="openTabs(event,'List')">Lista</button>
+				<button class="w3-black w3-bar-item w3-button testbtn w3-padding-16" onclick="openTabs(event,'AddUser')">Dodaj</button>
 			</div>
 
 			<div id="List" class="w3-container tab w3-animate-opacity">

@@ -121,6 +121,7 @@
 											<select class="w3-select" name="option">
 												<option value="" disabled selected>${role.get(0)}</option>
 												<option value="ADMIN">ADMIN</option>
+												<option value="HOST">HOST</option>
 												<option value="USER">USER</option>
 												<option value="BRAK">BRAK</option>
 											</select>

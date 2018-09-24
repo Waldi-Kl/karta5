@@ -38,7 +38,9 @@
 		<!-- Część centralna -->
 		<div class="w3-container w3-cell ">
 			<div>
-				<h1>Podaj dane do logowania.</h1>
+			<!--	<h1>Podaj dane do logowania.</h1>-->
+				<h1>A co to takiego !!!.</h1>
+				
 				<h3>${message}</h3>
 
 				<!--  Tu jakaś treść  -->
