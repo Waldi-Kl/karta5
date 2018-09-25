@@ -64,6 +64,7 @@ private EmailServiceImpl emailService2;
 			user.setPass("123");
 			userInfoDAO.save(user);
 
+			System.out.println("Propertisy =" + env.getProperty("spring.mail.username"));
 			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080" + servletContext.getContextPath() +"/forgotpassword";
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
