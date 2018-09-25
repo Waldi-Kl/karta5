@@ -2,6 +2,8 @@ package com.waldi.karta.dao.impl;
 
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -13,9 +15,13 @@ import com.waldi.karta.dao.EmailService;
 
 @Service("userService")
 public class EmailServiceImpl implements EmailService {
+	
+	@Autowired
+	  private Environment env;
 
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
+		System.out.println("Env = " + env.getProperty("spring.mail.usernam"));
 		JavaMailSender mailSender = new JavaMailSenderImpl();
 		
 	    ((JavaMailSenderImpl) mailSender).setHost("localhost");

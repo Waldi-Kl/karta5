@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.waldi.karta.dao.EmailService;
 import com.waldi.karta.dao.UserInfoDAO;
 import com.waldi.karta.dao.impl.EmailServiceImpl;
 import com.waldi.model.UserInfo;
@@ -36,7 +37,8 @@ public class PassworldController {
     private ServletContext servletContext;
 	
 	
-private EmailServiceImpl emailService2;
+//private EmailServiceImpl emailService2;
+private EmailService emailService2;
 
 	
 	// Display forgotPassword page. Wyœwetl stronê do wprowadzenia email
@@ -68,7 +70,7 @@ private EmailServiceImpl emailService2;
 			String appUrl = request.getScheme() + "://" + request.getServerName() + ":8080" + servletContext.getContextPath() +"/forgotpassword";
 			// Email message
 			SimpleMailMessage passwordResetEmail = new SimpleMailMessage();
-			passwordResetEmail.setFrom(env.getProperty("service.name"));	// service.name jest pobierane z pliku konfiguracyjnego config.propertis
+			passwordResetEmail.setFrom(env.getProperty("spring.mail.username"));	// service.name jest pobierane z pliku konfiguracyjnego config.propertis
 			passwordResetEmail.setTo(user.getEmail());
 			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij link poni¿ej:\n" + appUrl

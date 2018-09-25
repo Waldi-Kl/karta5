@@ -21,7 +21,7 @@ import com.waldi.karta.dao.UserInfoDAO;
 @ComponentScan("com.waldi.karta.*")
 @EnableTransactionManagement
 // Load to Environment.
-@PropertySource({"classpath:datasource-cfg.properties", "classpath:config.properties"})
+@PropertySource({"classpath:datasource-cfg.properties", "classpath:config.properties", "classpath:aplication.properties"})
 
 public class ApplicationContextConfig {
 	 // The Environment class serves as the property holder
