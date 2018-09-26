@@ -38,7 +38,8 @@ public class PassworldController {
 	
 	
 //private EmailServiceImpl emailService2;
-private EmailService emailService2;
+	@Autowired
+	private EmailService emailService2;
 
 	
 	// Display forgotPassword page. Wyœwetl stronê do wprowadzenia email
@@ -54,7 +55,19 @@ private EmailService emailService2;
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ModelAndView processForgotPasswordForm(ModelAndView modelAndView, @RequestParam("email") String userEmail, HttpServletRequest request) {
 		UserInfo user = new UserInfo();
+		try {
 		user = userInfoDAO.findUserByEmail(userEmail);
+		}catch (Exception e) {
+			// Tu powinno znalesc sie obs³uga wielu b³êdów jdbc (e.get..()) UWAGA!!!!
+			// powinny tworzyæ siê logi z b³êdami.
+//			model.addAttribute("title", "UserInfo");
+//			model.addAttribute("message", "Nie powodzenie podczas po³¹czenia do bazy!");
+			System.out.println("Blad Email: "+e);
+			modelAndView.addObject("message", "Nie powodzenie podczas po³¹czenia do bazy!");
+			modelAndView.setViewName("403Page");
+			return modelAndView;
+		}
+
 		modelAndView.addObject("title", "UserInfo");
 		if (user==null) {
 			modelAndView.addObject("errorMessage", "Nie znaleziono konta przypisaneg do podanego adresu.");
@@ -75,7 +88,8 @@ private EmailService emailService2;
 			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij link poni¿ej:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
-			emailService2 = new EmailServiceImpl();
+			
+			//emailService2 = new EmailServiceImpl(); UWAGA - nie wolno samememu tworzyæ instancji clasy która bêdzie powo³ywana przez SPRINGA. Powoduje to NULL we wnêtrzu tej klasy dla nowoAutowi¹zanych obiektów
 			
 			emailService2.sendEmail(passwordResetEmail);
 

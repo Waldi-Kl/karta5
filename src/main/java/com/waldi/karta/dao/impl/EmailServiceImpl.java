@@ -21,14 +21,18 @@ public class EmailServiceImpl implements EmailService {
 
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
-		System.out.println("Env = " + env.getProperty("spring.mail.usernam"));
+		System.out.println("Aplikation spring.mail = " + env.getProperty("spring.mail.password"));
 		JavaMailSender mailSender = new JavaMailSenderImpl();
 		
-	    ((JavaMailSenderImpl) mailSender).setHost("localhost");
-	    ((JavaMailSenderImpl) mailSender).setPort(25);
-	     
-	    ((JavaMailSenderImpl) mailSender).setUsername("wsparcie@localhost");
-	    ((JavaMailSenderImpl) mailSender).setPassword("1234");
+//	    ((JavaMailSenderImpl) mailSender).setHost("localhost");
+		((JavaMailSenderImpl) mailSender).setHost(env.getProperty("spring.mail.host"));
+//	    ((JavaMailSenderImpl) mailSender).setPort(25);
+		((JavaMailSenderImpl) mailSender).setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
+//	     
+//	    ((JavaMailSenderImpl) mailSender).setUsername("wsparcie@localhost");
+		((JavaMailSenderImpl) mailSender).setUsername(env.getProperty("spring.mail.username"));
+//	    ((JavaMailSenderImpl) mailSender).setPassword("1234");
+		((JavaMailSenderImpl) mailSender).setPassword(env.getProperty("spring.mail.password"));
 	     
 	    Properties props = ((JavaMailSenderImpl) mailSender).getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
