@@ -15,11 +15,11 @@
 					<button class="w3-button w3-padding-16 w3-theme"><i class="fa fa-male"></i> Osoba<i class="fa fa-caret-down"></i>
 					</button>
 					<div class="w3-dropdown-content w3-card-4 w3-bar-block">
-						<a href="${pageContext.request.contextPath}/cardInfo/#"
+						<a href="${pageContext.request.contextPath}/personInfo/#"
 							class="w3-bar-item w3-button">Dodaj</a> <a
-							href="${pageContext.request.contextPath}/cardInfo/#"
+							href="${pageContext.request.contextPath}/personInfo/#"
 							class="w3-bar-item w3-button">Znajdz</a> <a
-							href="${pageContext.request.contextPath}/cardInfo/#"
+							href="${pageContext.request.contextPath}/personInfo/#"
 							class="w3-bar-item w3-button">Zmien</a>
 					</div>
 				</div>

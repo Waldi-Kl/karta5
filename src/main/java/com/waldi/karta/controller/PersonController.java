@@ -27,7 +27,7 @@ public class PersonController {
 		return "cps";
 	}
 	
-	@RequestMapping(value = { "/personList" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/personList"}, method = RequestMethod.GET)
 	public String personList(Model model) {
 		List<Person> list = null;
 		try {

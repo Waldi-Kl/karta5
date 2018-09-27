@@ -33,7 +33,7 @@
 					</div>
 
 				</div>
-				<a href="${pageContext.request.contextPath}/personInfo/personList/"
+				<a href="${pageContext.request.contextPath}/personInfo/personList"
 					class="w3-bar-item w3-button w3-padding-16"><i
 					class="fa fa-male"></i> Osoba</a>
 					
