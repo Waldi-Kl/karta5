@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.waldi.karta.dao.EmailService;
 import com.waldi.karta.dao.UserInfoDAO;
 import com.waldi.karta.dao.impl.EmailServiceImpl;
 import com.waldi.model.UserInfo;
@@ -36,7 +37,9 @@ public class PassworldController {
     private ServletContext servletContext;
 	
 	
-private EmailServiceImpl emailService2;
+//private EmailServiceImpl emailService2;
+	@Autowired
+private EmailService emailService2;
 
 	
 	// Display forgotPassword page. Wyœwetl stronê do wprowadzenia email
@@ -72,7 +75,7 @@ private EmailServiceImpl emailService2;
 			passwordResetEmail.setSubject("Restart has³a");
 			passwordResetEmail.setText("Aby zrestartowaæ has³o kliknij link poni¿ej:\n" + appUrl
 					+ "/reset?token=" + user.getResetToken());
-			emailService2 = new EmailServiceImpl();
+			//emailService2 = new EmailServiceImpl();
 			
 			emailService2.sendEmail(passwordResetEmail);
 

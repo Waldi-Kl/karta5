@@ -21,7 +21,7 @@ import com.waldi.karta.dao.UserInfoDAO;
 @ComponentScan("com.waldi.karta.*")
 @EnableTransactionManagement
 // Load to Environment.
-@PropertySource({"classpath:datasource-cfg.properties", "classpath:config.properties"})
+@PropertySource({"classpath:datasource-cfg.properties", "classpath:config.properties","classpath:aplication.properties"})
 
 public class ApplicationContextConfig {
 	 // The Environment class serves as the property holder
@@ -66,8 +66,7 @@ public class ApplicationContextConfig {
 	      dataSource.setUrl(env.getProperty("ds.url"));
 	      dataSource.setUsername(env.getProperty("ds.username"));
 	      dataSource.setPassword(env.getProperty("ds.password"));
-	 
-	      System.out.println("## getDataSource: " + dataSource);
+
 	 
 	      return dataSource;
 	  }

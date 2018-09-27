@@ -18,7 +18,7 @@
 <title>${title}</title>
 </head>
 <body>
-<jsp:include page="_menuCard.jsp" />
+<jsp:include page="_menuStat.jsp" />
 <div class="w3-cell-row">
 
 <h2>Statystyki</h2>

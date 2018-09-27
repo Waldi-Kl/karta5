@@ -28,7 +28,7 @@ public class MainController {
    public String mainController(Model model) {
        model.addAttribute("title", "Welcome");
        model.addAttribute("message", "Wybierz rodzaj zadania.");
-      // System.out.println("Info z aplication.prop :"+ env.getProperty("service.name"));
+
        return "homePage";
    }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,14 @@ import com.waldi.model.UserInfo;
 @Transactional
 public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 
+	
 	@Autowired
 	public UserInfoDAOImpl(DataSource dataSource) {
 		this.setDataSource(dataSource);
 	}
+	
+	 @Autowired
+	  private Environment env;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;	// kodowanie has³a rypt-em
@@ -34,7 +39,7 @@ public class UserInfoDAOImpl extends JdbcDaoSupport implements UserInfoDAO {
 				+ "from user_rule ur where ur.user_id =(select u.id from user u where u.login =?))";
 		Object[] params = new Object[] { userLogin };
 		List<String> rules = this.getJdbcTemplate().queryForList(sql, params, String.class);
-
+System.out.println("To jest ENV =" + env.getProperty("spring.mail.username"));
 		return rules;
 	}
 
