@@ -42,7 +42,7 @@ public class PersonController {
 
 		model.addAttribute("title", "Person");
 		model.addAttribute("persons", list);
-		return "personPage";
+		return "personListPage";
 	}
 	
 	@RequestMapping(value = { "/personList/{name}" }, method = RequestMethod.GET)

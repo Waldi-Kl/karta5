@@ -23,9 +23,7 @@ public class EmailServiceImpl implements EmailService {
 
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
-//		
-		test();
-//		System.out.println("To jest ENV z ESI=" + env.getProperty("spring.mail.username"));
+
 		JavaMailSender mailSender = new JavaMailSenderImpl();
 
 		

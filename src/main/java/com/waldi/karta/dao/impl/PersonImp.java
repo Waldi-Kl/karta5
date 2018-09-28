@@ -2,13 +2,24 @@ package com.waldi.karta.dao.impl;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.waldi.karta.dao.PersonDAO;
+import com.waldi.karta.mapper.PersonMapper;
 import com.waldi.model.Person;
 
 @Service
-public class PersonImp implements PersonDAO {
+public class PersonImp extends JdbcDaoSupport implements PersonDAO {
+	
+	@Autowired
+	public PersonImp(DataSource dataSource) {
+		this.setDataSource(dataSource);
+	}
+
 
 	@Override
 	public Person getPersonInfo(int personID) {
@@ -19,7 +30,11 @@ public class PersonImp implements PersonDAO {
 	@Override
 	public List<Person> getPersonList() {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = PersonMapper.BASE_SQL;
+		Object[] params = new Object[] {};
+		PersonMapper mapper = new PersonMapper();
+		List<Person> lista = this.getJdbcTemplate().query(sql, params, mapper);
+		return  lista;
 	}
 
 	@Override
