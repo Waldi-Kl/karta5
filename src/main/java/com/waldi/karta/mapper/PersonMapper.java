@@ -55,18 +55,25 @@ public class PersonMapper implements RowMapper<Person> {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(this.date);
 		String day = "";
-		String manth = "";
+		String month = "";
 		String year = "";
 		
+		year = Integer.toString(cal.get(Calendar.YEAR));
 		if (cal.get(Calendar.DAY_OF_MONTH) < 10) day = "0" + Integer.toString(cal.get(Calendar.DAY_OF_MONTH)); else day = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-		if ((cal.get(Calendar.MONTH)+1) < 10) manth = "0" + Integer.toString(cal.get(Calendar.MONTH)+1);else day = Integer.toString(cal.get(Calendar.MONTH)+1);
-		 year = Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
 		
-		this.pesel = year.substring(2, 2) + manth + day + pesel;
-		System.out.println("Pesel = " + pesel);
-		System.out.println("ROk = " + Integer.toString(cal.get(Calendar.YEAR)));
-		System.out.println("MIESI = " + Integer.toString(cal.get(Calendar.MONTH)));
-		System.out.println("Dzieñ = " + year);
+		
+		if(year.substring(0,2).equals("19")){
+			
+		if ((cal.get(Calendar.MONTH)+1) < 10) month = "0" + Integer.toString(cal.get(Calendar.MONTH)+1); 
+		else month = Integer.toString(cal.get(Calendar.MONTH)+1);}
+	
+		else{
+			
+			if ((cal.get(Calendar.MONTH)+1) < 10) month = "2" + Integer.toString(cal.get(Calendar.MONTH)+1); 
+			else month = "3" + Integer.toString(cal.get(Calendar.MONTH)+1).substring(1, 1);
+		}
+		
+		this.pesel = year.substring(2) + month + day + pesel;
 		
 	}
 

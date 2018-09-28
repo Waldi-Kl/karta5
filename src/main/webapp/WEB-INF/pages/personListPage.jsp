@@ -63,16 +63,16 @@
 
 						<table class="w3-table w3-striped w3-border" id="userTable">
 							<tr>
-								<th>Nazwisko</th>
 								<th>Imię</th>
+								<th>Nazwisko</th>
 								<th>Pesel</th>
 								<th>Data Urodzenia</th>
 								<th></th>
 							</tr>
 							<c:forEach var="person" items="${persons}">
 								<tr>
-									<td>${person.surname}</td>
 									<td>${person.name_1}</td>
+									<td>${person.surname}</td>
 									<td>${person.pesel}</td>
 									<td>${person.date}</td>
 									<td><a
