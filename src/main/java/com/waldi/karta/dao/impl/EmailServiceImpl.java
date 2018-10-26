@@ -28,25 +28,27 @@ public class EmailServiceImpl implements EmailService {
 	@Async
 	public void sendEmail(SimpleMailMessage email) {
 
-		System.out.println("Poszedl sendEmail");
+		System.out.println("Poszedl sendEmail" );
 		JavaMailSender mailSender = new JavaMailSenderImpl();
 
 		
-	    ((JavaMailSenderImpl) mailSender).setHost("localhost");
-		
-	    ((JavaMailSenderImpl) mailSender).setPort(25);
-	   // ((JavaMailSenderImpl) mailSender).setPort(587);
-	     
-	    ((JavaMailSenderImpl) mailSender).setUsername("wsparcie@localhost");
-	    ((JavaMailSenderImpl) mailSender).setPassword("1234");
-		
+	   // ((JavaMailSenderImpl) mailSender).setHost("localhost");
+	    //((JavaMailSenderImpl) mailSender).setPort(25);
+//	    ((JavaMailSenderImpl) mailSender).setUsername("wsparcie@localhost");
+//	    ((JavaMailSenderImpl) mailSender).setPassword("1234");
+	    
+		 ((JavaMailSenderImpl) mailSender).setHost(env.getProperty("spring.mail.host"));		
+	    ((JavaMailSenderImpl) mailSender).setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
+	    ((JavaMailSenderImpl) mailSender).setUsername(env.getProperty("spring.mail.username"));
+	    ((JavaMailSenderImpl) mailSender).setPassword(env.getProperty("spring.mail.password"));
+	    
 	     
 	    Properties props = ((JavaMailSenderImpl) mailSender).getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
-	    props.put("mail.smtp.auth", "false");
-	    props.put("mail.smtp.starttls.enable", "true");
-	    props.put("mail.debug", "true");
-		
+	    props.put("mail.smtp.auth", env.getProperty("spring.mail.smtp.auth"));
+	    props.put("mail.smtp.starttls.enable", env.getProperty("spring.mail.smtp.starttls.enable"));
+	    props.put("mail.debug", env.getProperty("spring.mail.username")); 
+	    
 		
 		try {mailSender.send(email);							// nale¿y dodaæ dependency : <groupId>javax.mail</groupId> <artifactId>mail</artifactId><version>1.4.7</version>
 		
